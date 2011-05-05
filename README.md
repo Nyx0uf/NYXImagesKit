@@ -18,6 +18,7 @@ By default the methods return auto-released objects, if you want them to return 
 This category allows you to apply filters on a UIImage object, currently there are 3 filters : Sepia, Grayscale and changing opacity.
 
 <img src="http://www.cocoabyss.com/wp-content/uploads/2011/05/niu_original.png" alt="Sepia image" width="210" height="158" style="margin-left:auto;margin-right:auto;display:block;" />
+
 Using these filters is very easy :
 
 	UIImage* sepia = [myImage sepia];
