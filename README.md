@@ -1,6 +1,6 @@
 # NYXImagesUtilities #
 
-This is a project for iOS which regroups a collection of useful UIImage categories to handle operations such as filtering, masking, rotating, resizing.
+This is a project for iOS which regroups a collection of useful UIImage categories to handle operations such as filtering, masking, rotating, resizing, saving.
 ***NYXImagesUtilities*** requires at least iOS 4.0, I don't intend to support older versions.
 
 
@@ -9,6 +9,10 @@ This is a project for iOS which regroups a collection of useful UIImage categori
 - Link with **QuartzCore** framework.
 - Add #import &lt;QuartzCore/QuartzCore.h&gt; in your Prefix.pch file.
 - Add **NYXImagesUtilities.h** & **NYXImagesUtilities.m** and the categories you want to your project.
+
+If want to use the saving category you must also link with :
+- **ImageIO.framework**
+- **MobileCoreServices.framework**
 
 By default the methods return auto-released objects, if you want them to return retained objects in order to manage memory yourself, just uncomment the <code>kNYXReturnRetainedObjects</code> constant in **NYXImagesUtilities.h**.
 
@@ -89,6 +93,20 @@ With this category you can rotate or flip an UIImage object, flipping is useful 
 	UIImage* flipped1 = [myImage verticalFlip];
 	UIImage* flipped2 = [myImage forizontalFlip];
 <img src="http://www.cocoabyss.com/wp-content/uploads/2011/05/niu_flip.jpg" width="210" height="158" style="margin-left:auto;margin-right:auto;display:block;"/>
+
+
+## UIImage+Saving ##
+
+This category allows you to save an UIImage object at a specified path or file URL, there are five types supported : BMP, GIF, JPG, PNG, TIFF.
+
+To use it, you must link with **ImageIO.framework** and **MobileCoreServices.framework**.
+
+	[myImage saveToURL:url type:NYXImageTypeJPEG backgroundFillColor:nil];
+	[myImage saveToPath:path type:NYXImageTypeTIFF backgroundFillColor:[UIColor yellowColor]];
+
+There is also two other methods which take only the path or URL as parameter and save the image in PNG, because it's the preferred format for iOS.
+
+If your image contains transparent zone and you save it in a format that doesn't support alpha, a fill color will be used, if you don't specify one, the default color will be white.
 
 
 ## License ##
