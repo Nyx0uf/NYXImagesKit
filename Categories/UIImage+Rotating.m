@@ -64,7 +64,7 @@
 /* Convenience method to rotate an image which take the angle in degrees */
 -(UIImage*)rotateInDegrees:(CGFloat)degrees
 {
-	return [self rotateInRadians:degrees_to_radians(degrees)];
+	return [self rotateInRadians:NYXDegreesToRadians(degrees)];
 }
 
 /* Convenience method to rotate an image at 180 degrees */

@@ -38,12 +38,12 @@ typedef struct
 	UInt8 _b;
 } ARGBPixel;
 
-static inline CGFloat degrees_to_radians(const CGFloat degrees)
+static inline CGFloat NYXDegreesToRadians(const CGFloat degrees)
 {
 	return degrees * 0.017453293; // (M_PI / 180.0f)
 }
 
-static inline CGFloat radians_to_degrees(const CGFloat radians)
+static inline CGFloat NYXRadiansToDegrees(const CGFloat radians)
 {
 	return radians * 57.295779513; // (180.0f / M_PI)
 }
