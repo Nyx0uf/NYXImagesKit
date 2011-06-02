@@ -7,7 +7,7 @@
 //
 
 
-#import "NYXImagesUtilities.h"
+#import "NYXImagesHelper.h"
 
 
 @interface UIImage (NYX_Rotating)
