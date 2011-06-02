@@ -11,3 +11,4 @@
 #import "UIImage+Masking.h"
 #import "UIImage+Resizing.h"
 #import "UIImage+Rotating.h"
+#import "UIImage+Reflection.h"
