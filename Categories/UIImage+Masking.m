@@ -20,7 +20,6 @@
 
 	/// Create a bitmap context with valid alpha
 	CGContextRef bmContext = NYXImageCreateARGBBitmapContext(originalWidth, originalHeight, 0);
-	//CGContextRef bmContext = CGBitmapContextCreate(NULL, originalWidth, originalHeight, 8/*Bits per component*/, 0, CGImageGetColorSpace(cgImage), kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
 	if (!bmContext)
 		return nil;
 

@@ -14,7 +14,7 @@
 /* Source : http://clang-analyzer.llvm.org/annotations 
  Better place it in your Prefix.pch file
  */
-#ifndef __has_feature      // Optional.
+#ifndef __has_feature // Optional.
 #define __has_feature(x) 0 // Compatibility with non-clang compilers.
 #endif
 
