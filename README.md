@@ -1,6 +1,6 @@
 # NYXImagesUtilities #
 
-This is a project for iOS which regroups a collection of useful UIImage categories to handle operations such as filtering, masking, reflecting, resizing, rotating, saving.
+This is a project for iOS which regroups a collection of useful UIImage categories to handle operations such as filtering, blurring, masking, reflecting, resizing, rotating, saving.
 ***NYXImagesUtilities*** requires at least iOS 4.0, I don't intend to support older versions.
 
 
@@ -36,6 +36,17 @@ Using these filters is very easy :
 </div>
 
 
+## UIImage+Blurring ##
+
+This category is composed of a single method which was originally written by Jeff Lamarche (@jeff_lamarche), you can read about it <a href="http://iphonedevelopment.blogspot.com/2010/08/uiimage-blur.html">here</a>.
+
+It allows to blur an image by a given factor.
+
+	UIImage* blur = [myImage blurredCopyUsingGuassFactor:5 andPixelRadius:5];
+
+<img src="http://www.cocoabyss.com/wp-content/uploads/2011/05/niu_blur.jpg" width="210" height="158" style="margin-left:auto;margin-right:auto;display:block;" />
+
+
 ## UIImage+Masking ##
 
 This category is composed of a single method which allow to mask an image, you just have to create the mask you desire.
@@ -48,8 +59,8 @@ This category is composed of a single method which allow to mask an image, you j
 
 This category was written by Matthias Tretter (@myell0w) and is composed of a single method to create a reflected image.
 
-	UIImage* reflected = [myImage reflectedImageWithHeight:_image.size.height fromAlpha:0.0f toAlpha:0.5f];
-<img src="http://www.cocoabyss.com/wp-content/uploads/2011/05/niu_refl.jpg" width="210" height="158" style="margin-left:auto;margin-right:auto;display:block;" />
+	UIImage* reflected = [myImage reflectedImageWithHeight:myImage.size.height fromAlpha:0.0f toAlpha:0.5f];
+<img src="http://www.cocoabyss.com/wp-content/uploads/2011/05/niu_refl.jpg" width="210" height="315" style="margin-left:auto;margin-right:auto;display:block;" />
 
 
 ## UIImage+Resizing ##

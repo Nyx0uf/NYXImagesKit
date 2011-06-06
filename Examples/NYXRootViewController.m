@@ -26,7 +26,7 @@
 		_originalImageView = nil;
 		_modifiedImageView = nil;
 		_resultLabel = nil;
-		_image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"jpg"]];
+		_image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"niu_original" ofType:@"png"]];
 	}
 	return self;
 }
@@ -80,10 +80,11 @@
 {
 	UIImage* final = nil;
 	const NSTimeInterval t1 = [[NSDate date] timeIntervalSince1970];
-	final = [_image reflectedImageWithHeight:_image.size.height fromAlpha:0.0f toAlpha:0.5f];
+	//final = [_image reflectedImageWithHeight:_image.size.height fromAlpha:0.0f toAlpha:0.5f];
+	final = [_image blurredCopyUsingGaussFactor:5 andPixelRadius:5];
 	const NSTimeInterval t2 = [[NSDate date] timeIntervalSince1970];
 	
-	[final saveToPath:@"/Users/benjgodard/Desktop/refl.jpg" type:NYXImageTypeJPEG backgroundFillColor:nil];
+	[final saveToPath:@"/Users/benjgodard/Desktop/niu_blur.jpg" type:NYXImageTypeJPEG backgroundFillColor:nil];
 
 	_resultLabel.text = [NSString stringWithFormat:@"%fs", t2 - t1];
 	_modifiedImageView.contentMode = (final.size.width < _modifiedImageView.frame.size.width && final.size.height < _modifiedImageView.frame.size.height) ? UIViewContentModeCenter : UIViewContentModeScaleAspectFit;
