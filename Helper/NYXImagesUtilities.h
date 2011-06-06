@@ -7,6 +7,7 @@
 //
 
 
+#import "UIImage+Blurring.h"
 #import "UIImage+Filtering.h"
 #import "UIImage+Masking.h"
 #import "UIImage+Reflection.h"
