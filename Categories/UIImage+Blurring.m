@@ -17,7 +17,7 @@
 
 @implementation UIImage (NYX_Blurring)
 
--(UIImage*)blurredCopyUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius
+-(UIImage*)blurredImageUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius
 {
 	CGImageRef cgImage = self.CGImage;
 	const size_t originalWidth = CGImageGetWidth(cgImage);

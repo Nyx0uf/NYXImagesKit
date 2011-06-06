@@ -19,11 +19,11 @@
 
 #ifdef kNYXReturnRetainedObjects
 
--(UIImage*)blurredCopyUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius NS_RETURNS_RETAINED;
+-(UIImage*)blurredImageUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius NS_RETURNS_RETAINED;
 
 #else
 
--(UIImage*)blurredCopyUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius;
+-(UIImage*)blurredImageUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius;
 
 #endif
 

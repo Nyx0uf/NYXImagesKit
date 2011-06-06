@@ -81,7 +81,7 @@
 	UIImage* final = nil;
 	const NSTimeInterval t1 = [[NSDate date] timeIntervalSince1970];
 	//final = [_image reflectedImageWithHeight:_image.size.height fromAlpha:0.0f toAlpha:0.5f];
-	final = [_image blurredCopyUsingGaussFactor:5 andPixelRadius:5];
+	final = [_image blurredImageUsingGaussFactor:5 andPixelRadius:5];
 	const NSTimeInterval t2 = [[NSDate date] timeIntervalSince1970];
 	
 	[final saveToPath:@"/Users/benjgodard/Desktop/niu_blur.jpg" type:NYXImageTypeJPEG backgroundFillColor:nil];
