@@ -11,18 +11,22 @@
 		1E16763D1373215A00F953C5 /* UIImage+Masking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1676371373215A00F953C5 /* UIImage+Masking.m */; };
 		1E16763E1373215A00F953C5 /* UIImage+Resizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1676391373215A00F953C5 /* UIImage+Resizing.m */; };
 		1E16763F1373215A00F953C5 /* UIImage+Rotating.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16763B1373215A00F953C5 /* UIImage+Rotating.m */; };
+		1E16764C1373372C00F953C5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E16764B1373372C00F953C5 /* MobileCoreServices.framework */; };
+		1E16764F13733C1400F953C5 /* UIImage+Saving.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16764E13733C1400F953C5 /* UIImage+Saving.m */; };
+		FC1E95E813992EC4005E2FFB /* UIImage+Blurring.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E95E713992EC4005E2FFB /* UIImage+Blurring.m */; };
 		FC2F3180136ECA8500486142 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2F317F136ECA8500486142 /* UIKit.framework */; };
 		FC2F3182136ECA8500486142 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2F3181136ECA8500486142 /* Foundation.framework */; };
 		FC2F3184136ECA8500486142 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2F3183136ECA8500486142 /* CoreGraphics.framework */; };
 		FC2F319D136ECBAC00486142 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2F319B136ECBAC00486142 /* ImageIO.framework */; };
 		FC2F319E136ECBAC00486142 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2F319C136ECBAC00486142 /* QuartzCore.framework */; };
 		FC2F31AD136ECC6400486142 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2F31AB136ECC6400486142 /* main.m */; };
-		FC2F31B2136ECC6D00486142 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2F31AF136ECC6D00486142 /* AppDelegate.m */; };
-		FC2F31B3136ECC6D00486142 /* NYXRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2F31B1136ECC6D00486142 /* NYXRootViewController.m */; };
-		FC2F31C5136ECD5200486142 /* NYXImagesUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2F31C4136ECD5200486142 /* NYXImagesUtilities.m */; };
 		FC312599137000A10097007F /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = FC312598137000A10097007F /* mask.png */; };
 		FC446F1D136ED1F400D3BE2D /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FC446F1B136ED1F400D3BE2D /* sample.jpg */; };
 		FC446F1E136ED1F400D3BE2D /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = FC446F1C136ED1F400D3BE2D /* sample.png */; };
+		FC4AEA971398DE200038E951 /* UIImage+Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4AEA961398DE200038E951 /* UIImage+Reflection.m */; };
+		FC888F441398E16F00516CF5 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FC888F421398E16F00516CF5 /* NYXImagesHelper.m */; };
+		FCB8F9091398E80700852B6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB8F9061398E80700852B6F /* AppDelegate.m */; };
+		FCB8F90A1398E80700852B6F /* NYXRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB8F9081398E80700852B6F /* NYXRootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,11 @@
 		1E1676391373215A00F953C5 /* UIImage+Resizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resizing.m"; sourceTree = "<group>"; };
 		1E16763A1373215A00F953C5 /* UIImage+Rotating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotating.h"; sourceTree = "<group>"; };
 		1E16763B1373215A00F953C5 /* UIImage+Rotating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotating.m"; sourceTree = "<group>"; };
+		1E16764B1373372C00F953C5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		1E16764D13733C1400F953C5 /* UIImage+Saving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Saving.h"; sourceTree = "<group>"; };
+		1E16764E13733C1400F953C5 /* UIImage+Saving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Saving.m"; sourceTree = "<group>"; };
+		FC1E95E613992EC4005E2FFB /* UIImage+Blurring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blurring.h"; sourceTree = "<group>"; };
+		FC1E95E713992EC4005E2FFB /* UIImage+Blurring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blurring.m"; sourceTree = "<group>"; };
 		FC2F317B136ECA8500486142 /* NYXImagesUtilities.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYXImagesUtilities.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2F317F136ECA8500486142 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FC2F3181136ECA8500486142 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -43,15 +52,18 @@
 		FC2F31A9136ECC5A00486142 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		FC2F31AB136ECC6400486142 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Other Sources/main.m"; sourceTree = "<group>"; };
 		FC2F31AC136ECC6400486142 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = "Other Sources/Prefix.pch"; sourceTree = "<group>"; };
-		FC2F31AE136ECC6D00486142 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
-		FC2F31AF136ECC6D00486142 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		FC2F31B0136ECC6D00486142 /* NYXRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NYXRootViewController.h; path = Classes/NYXRootViewController.h; sourceTree = "<group>"; };
-		FC2F31B1136ECC6D00486142 /* NYXRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NYXRootViewController.m; path = Classes/NYXRootViewController.m; sourceTree = "<group>"; };
-		FC2F31C3136ECD5200486142 /* NYXImagesUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NYXImagesUtilities.h; path = "Other Sources/NYXImagesUtilities.h"; sourceTree = "<group>"; };
-		FC2F31C4136ECD5200486142 /* NYXImagesUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NYXImagesUtilities.m; path = "Other Sources/NYXImagesUtilities.m"; sourceTree = "<group>"; };
 		FC312598137000A10097007F /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mask.png; path = Resources/mask.png; sourceTree = "<group>"; };
 		FC446F1B136ED1F400D3BE2D /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sample.jpg; path = Resources/sample.jpg; sourceTree = "<group>"; };
 		FC446F1C136ED1F400D3BE2D /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sample.png; path = Resources/sample.png; sourceTree = "<group>"; };
+		FC4AEA951398DE200038E951 /* UIImage+Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Reflection.h"; sourceTree = "<group>"; };
+		FC4AEA961398DE200038E951 /* UIImage+Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Reflection.m"; sourceTree = "<group>"; };
+		FC888F411398E16F00516CF5 /* NYXImagesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NYXImagesHelper.h; path = Helper/NYXImagesHelper.h; sourceTree = "<group>"; };
+		FC888F421398E16F00516CF5 /* NYXImagesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NYXImagesHelper.m; path = Helper/NYXImagesHelper.m; sourceTree = "<group>"; };
+		FC888F431398E16F00516CF5 /* NYXImagesUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NYXImagesUtilities.h; path = Helper/NYXImagesUtilities.h; sourceTree = "<group>"; };
+		FCB8F9051398E80700852B6F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FCB8F9061398E80700852B6F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FCB8F9071398E80700852B6F /* NYXRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXRootViewController.h; sourceTree = "<group>"; };
+		FCB8F9081398E80700852B6F /* NYXRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXRootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E16764C1373372C00F953C5 /* MobileCoreServices.framework in Frameworks */,
 				FC2F319D136ECBAC00486142 /* ImageIO.framework in Frameworks */,
 				FC2F319E136ECBAC00486142 /* QuartzCore.framework in Frameworks */,
 				FC2F3180136ECA8500486142 /* UIKit.framework in Frameworks */,
@@ -77,10 +90,16 @@
 				1E1676351373215A00F953C5 /* UIImage+Filtering.m */,
 				1E1676361373215A00F953C5 /* UIImage+Masking.h */,
 				1E1676371373215A00F953C5 /* UIImage+Masking.m */,
+				FC4AEA951398DE200038E951 /* UIImage+Reflection.h */,
+				FC4AEA961398DE200038E951 /* UIImage+Reflection.m */,
 				1E1676381373215A00F953C5 /* UIImage+Resizing.h */,
 				1E1676391373215A00F953C5 /* UIImage+Resizing.m */,
 				1E16763A1373215A00F953C5 /* UIImage+Rotating.h */,
 				1E16763B1373215A00F953C5 /* UIImage+Rotating.m */,
+				1E16764D13733C1400F953C5 /* UIImage+Saving.h */,
+				1E16764E13733C1400F953C5 /* UIImage+Saving.m */,
+				FC1E95E613992EC4005E2FFB /* UIImage+Blurring.h */,
+				FC1E95E713992EC4005E2FFB /* UIImage+Blurring.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -88,8 +107,9 @@
 		FC2F3170136ECA8500486142 = {
 			isa = PBXGroup;
 			children = (
-				FC2F3199136ECB5600486142 /* Classes */,
 				1E1676331373215A00F953C5 /* Categories */,
+				FC888F401398E15800516CF5 /* Helper */,
+				FCB8F9041398E80700852B6F /* Examples */,
 				FC2F319A136ECB6400486142 /* Other Sources */,
 				FC2F319F136ECBCD00486142 /* Resources */,
 				FC2F317E136ECA8500486142 /* Frameworks */,
@@ -108,6 +128,7 @@
 		FC2F317E136ECA8500486142 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E16764B1373372C00F953C5 /* MobileCoreServices.framework */,
 				FC2F319B136ECBAC00486142 /* ImageIO.framework */,
 				FC2F319C136ECBAC00486142 /* QuartzCore.framework */,
 				FC2F317F136ECA8500486142 /* UIKit.framework */,
@@ -117,22 +138,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FC2F3199136ECB5600486142 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				FC2F31AE136ECC6D00486142 /* AppDelegate.h */,
-				FC2F31AF136ECC6D00486142 /* AppDelegate.m */,
-				FC2F31B0136ECC6D00486142 /* NYXRootViewController.h */,
-				FC2F31B1136ECC6D00486142 /* NYXRootViewController.m */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
 		FC2F319A136ECB6400486142 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				FC2F31C3136ECD5200486142 /* NYXImagesUtilities.h */,
-				FC2F31C4136ECD5200486142 /* NYXImagesUtilities.m */,
 				FC2F31AB136ECC6400486142 /* main.m */,
 				FC2F31AC136ECC6400486142 /* Prefix.pch */,
 			);
@@ -148,6 +156,27 @@
 				FC2F31A9136ECC5A00486142 /* Info.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		FC888F401398E15800516CF5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FC888F431398E16F00516CF5 /* NYXImagesUtilities.h */,
+				FC888F411398E16F00516CF5 /* NYXImagesHelper.h */,
+				FC888F421398E16F00516CF5 /* NYXImagesHelper.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		FCB8F9041398E80700852B6F /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				FCB8F9051398E80700852B6F /* AppDelegate.h */,
+				FCB8F9061398E80700852B6F /* AppDelegate.m */,
+				FCB8F9071398E80700852B6F /* NYXRootViewController.h */,
+				FCB8F9081398E80700852B6F /* NYXRootViewController.m */,
+			);
+			path = Examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,13 +240,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC2F31AD136ECC6400486142 /* main.m in Sources */,
-				FC2F31B2136ECC6D00486142 /* AppDelegate.m in Sources */,
-				FC2F31B3136ECC6D00486142 /* NYXRootViewController.m in Sources */,
-				FC2F31C5136ECD5200486142 /* NYXImagesUtilities.m in Sources */,
 				1E16763C1373215A00F953C5 /* UIImage+Filtering.m in Sources */,
 				1E16763D1373215A00F953C5 /* UIImage+Masking.m in Sources */,
 				1E16763E1373215A00F953C5 /* UIImage+Resizing.m in Sources */,
 				1E16763F1373215A00F953C5 /* UIImage+Rotating.m in Sources */,
+				1E16764F13733C1400F953C5 /* UIImage+Saving.m in Sources */,
+				FC4AEA971398DE200038E951 /* UIImage+Reflection.m in Sources */,
+				FC888F441398E16F00516CF5 /* NYXImagesHelper.m in Sources */,
+				FCB8F9091398E80700852B6F /* AppDelegate.m in Sources */,
+				FCB8F90A1398E80700852B6F /* NYXRootViewController.m in Sources */,
+				FC1E95E813992EC4005E2FFB /* UIImage+Blurring.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
