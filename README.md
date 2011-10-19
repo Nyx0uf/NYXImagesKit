@@ -1,7 +1,8 @@
 # NYXImagesUtilities #
 
 This is a project for iOS which regroups a collection of useful UIImage categories to handle operations such as filtering, blurring, masking, reflecting, resizing, rotating, saving.
-***NYXImagesUtilities*** requires at least iOS 4.0, I don't intend to support older versions.
+***NYXImagesUtilities*** requires at least iOS 4.2, I don't intend to support older versions.
+The project is a static library so that you don't have to import the sources in your own project and build them each time. Also all the code is ARC enabled.
 
 
 ## Installation ##
@@ -13,8 +14,6 @@ If you want to use the saving category you must also link with :
 
 - **ImageIO.framework**
 - **MobileCoreServices.framework**
-
-By default the methods return auto-released objects, if you want them to return retained objects in order to manage memory yourself, just uncomment the <code>kNYXReturnRetainedObjects</code> constant in **NYXImagesHelper.h**.
 
 
 ## UIImage+Filtering ##
