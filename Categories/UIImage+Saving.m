@@ -23,7 +23,7 @@
 	if (!url)
 		return NO;
 
-	CGImageDestinationRef dest = CGImageDestinationCreateWithURL((CFURLRef)url, [self utiForType:type], 1, NULL);
+	CGImageDestinationRef dest = CGImageDestinationCreateWithURL((__bridge CFURLRef)url, [self utiForType:type], 1, NULL);
 	if (!dest)
 		return NO;
 
@@ -34,7 +34,7 @@
 		CFRelease(dest);
 		return NO;
 	}
-	CFDictionaryAddValue(options, kCGImageDestinationLossyCompressionQuality, [NSNumber numberWithFloat:1.0f]); // No compression
+	CFDictionaryAddValue(options, kCGImageDestinationLossyCompressionQuality, (__bridge CFNumberRef)[NSNumber numberWithFloat:1.0f]); // No compression
 	if (fillColor)
 		CFDictionaryAddValue(options, kCGImageDestinationBackgroundColor, fillColor.CGColor);
 
@@ -63,7 +63,6 @@
 
 	NSURL* url = [[NSURL alloc] initFileURLWithPath:path];
 	const BOOL ret = [self saveToURL:url type:type backgroundFillColor:fillColor];
-	[url release];
 	return ret;
 }
 
@@ -74,7 +73,6 @@
 
 	NSURL* url = [[NSURL alloc] initFileURLWithPath:path];
 	const BOOL ret = [self saveToURL:url type:NYXImageTypePNG backgroundFillColor:nil];
-	[url release];
 	return ret;
 }
 

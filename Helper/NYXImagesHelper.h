@@ -8,24 +8,6 @@
 //
 
 
-/* If defined, categories methods will return object with a +1 retain count, so you have to release them manually */
-//#define kNYXReturnRetainedObjects
-
-/* Source : http://clang-analyzer.llvm.org/annotations 
- Better place it in your Prefix.pch file
- */
-#ifndef __has_feature // Optional.
-#define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif
-
-#ifndef NS_RETURNS_RETAINED
-#if __has_feature(attribute_ns_returns_retained)
-#define NS_RETURNS_RETAINED __attribute__((ns_returns_retained))
-#else
-#define NS_RETURNS_RETAINED
-#endif
-#endif
-
 /* Represents an ARGB pixel */
 typedef struct 
 {
@@ -51,5 +33,5 @@ static inline CGFloat NYXRadiansToDegrees(const CGFloat radians)
 }
 
 CGContextRef NYXImageCreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow);
-CGContextRef NYXCreateBitmapContext(const int pixelsWide, const int pixelsHigh);
+CGContextRef NYXGetBitmapContext(const int pixelsWide, const int pixelsHigh);
 CGImageRef NYXCreateGradientImage(const size_t pixelsWide, const size_t pixelsHigh, const CGFloat fromAlpha, const CGFloat toAlpha);

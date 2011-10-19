@@ -57,11 +57,7 @@
 
 	/// Create an image object from the context
 	CGImageRef sepiaImageRef = CGBitmapContextCreateImage(bmContext);
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* sepia = [[UIImage alloc] initWithCGImage:sepiaImageRef];
-#else
 	UIImage* sepia = [UIImage imageWithCGImage:sepiaImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(sepiaImageRef);
@@ -92,11 +88,7 @@
 
 	/// Create an image object from the context
 	CGImageRef grayscaledImageRef = CGBitmapContextCreateImage(bmContext);
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* grayscaled = [[UIImage alloc] initWithCGImage:grayscaledImageRef];
-#else
 	UIImage* grayscaled = [UIImage imageWithCGImage:grayscaledImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(grayscaledImageRef);
@@ -124,11 +116,7 @@
 
 	/// Create an image object from the context
 	CGImageRef transparentImageRef = CGBitmapContextCreateImage(bmContext);
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* transparent = [[UIImage alloc] initWithCGImage:transparentImageRef];
-#else
 	UIImage* transparent = [UIImage imageWithCGImage:transparentImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(transparentImageRef);

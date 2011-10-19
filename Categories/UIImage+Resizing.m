@@ -60,11 +60,7 @@
 
 	/// Create the cropped image
 	CGImageRef croppedImageRef = CGImageCreateWithImageInRect(self.CGImage, (CGRect){.origin.x = x, .origin.y = y, .size = newSize});
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* cropped = [[UIImage alloc] initWithCGImage:croppedImageRef];
-#else
 	UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(croppedImageRef);
@@ -118,11 +114,7 @@
 
 	/// Create an image object from the context
 	CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* scaled = [[UIImage alloc] initWithCGImage:scaledImageRef];
-#else
 	UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(scaledImageRef);
@@ -192,11 +184,7 @@
 
 	/// Create an image object from the context
 	CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* scaled = [[UIImage alloc] initWithCGImage:scaledImageRef];
-#else
 	UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(scaledImageRef);

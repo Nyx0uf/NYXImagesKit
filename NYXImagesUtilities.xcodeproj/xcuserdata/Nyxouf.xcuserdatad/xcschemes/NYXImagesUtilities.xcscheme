@@ -13,8 +13,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FC2F317A136ECA8500486142"
-               BuildableName = "NYXImagesUtilities.app"
+               BlueprintIdentifier = "1E0289D6144EF32200B6B6D5"
+               BuildableName = "libNYXImagesUtilities.a"
                BlueprintName = "NYXImagesUtilities"
                ReferencedContainer = "container:NYXImagesUtilities.xcodeproj">
             </BuildableReference>
@@ -32,39 +32,20 @@
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FC2F317A136ECA8500486142"
-            BuildableName = "NYXImagesUtilities.app"
-            BlueprintName = "NYXImagesUtilities"
-            ReferencedContainer = "container:NYXImagesUtilities.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
+      buildConfiguration = "Debug"
+      debugDocumentVersioning = "YES"
+      allowLocationSimulation = "YES">
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FC2F317A136ECA8500486142"
-            BuildableName = "NYXImagesUtilities.app"
-            BlueprintName = "NYXImagesUtilities"
-            ReferencedContainer = "container:NYXImagesUtilities.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "YES">
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

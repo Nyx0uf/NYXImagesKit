@@ -12,14 +12,6 @@
 
 @interface UIImage (NYX_Masking)
 
-#ifdef kNYXReturnRetainedObjects
-
--(UIImage*)maskWithImage:(UIImage*)mask NS_RETURNS_RETAINED;
-
-#else
-
 -(UIImage*)maskWithImage:(UIImage*)mask;
-
-#endif
 
 @end

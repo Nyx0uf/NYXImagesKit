@@ -31,14 +31,6 @@
 
 @interface UIImage (Reflection)
 
-#ifdef kNYXReturnRetainedObjects
-
--(UIImage*)reflectedImageWithHeight:(NSUInteger)height fromAlpha:(CGFloat)fromAlpha toAlpha:(CGFloat)toAlpha NS_RETURNS_RETAINED;
-
-#else
-
 -(UIImage*)reflectedImageWithHeight:(NSUInteger)height fromAlpha:(CGFloat)fromAlpha toAlpha:(CGFloat)toAlpha;
-
-#endif
 
 @end

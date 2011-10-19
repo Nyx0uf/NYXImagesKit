@@ -17,14 +17,6 @@
 
 @interface UIImage (NYX_Blurring)
 
-#ifdef kNYXReturnRetainedObjects
-
--(UIImage*)blurredImageUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius NS_RETURNS_RETAINED;
-
-#else
-
 -(UIImage*)blurredImageUsingGaussFactor:(NSUInteger)gaussFactor andPixelRadius:(NSUInteger)pixelRadius;
-
-#endif
 
 @end

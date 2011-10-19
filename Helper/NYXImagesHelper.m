@@ -26,14 +26,11 @@ CGContextRef NYXImageCreateARGBBitmapContext(const size_t width, const size_t he
 // The following two functions were taken from the increadibly awesome HockeyKit:
 // Created by Peter Steinberger on 10.01.11.
 // Copyright 2011 Peter Steinberger. All rights reserved.
-CGContextRef NYXCreateBitmapContext(const int pixelsWide, const int pixelsHigh)
+CGContextRef NYXGetBitmapContext(const int pixelsWide, const int pixelsHigh)
 {
 	const CGSize size = (CGSize){.width = pixelsWide, .height = pixelsHigh};
 
-    if (UIGraphicsBeginImageContextWithOptions != NULL)
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
-    else
-        UIGraphicsBeginImageContext(size);
+	UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
 
     return UIGraphicsGetCurrentContext();
 }

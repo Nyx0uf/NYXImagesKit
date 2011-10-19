@@ -10,11 +10,7 @@
 #import "UIImage+Rotating.h"
 
 @interface UIImage (NYX_Rotating_private)
-#ifdef kNYXReturnRetainedObjects
--(UIImage*)flip:(BOOL)horizontal NS_RETURNS_RETAINED;
-#else
 -(UIImage*)flip:(BOOL)horizontal;
-#endif
 @end
 
 
@@ -48,11 +44,7 @@
 
 	/// Create an image object from the context
 	CGImageRef rotatedImageRef = CGBitmapContextCreateImage(bmContext);
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* rotated = [[UIImage alloc] initWithCGImage:rotatedImageRef];
-#else
 	UIImage* rotated = [UIImage imageWithCGImage:rotatedImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(rotatedImageRef);
@@ -105,11 +97,7 @@
 
 	/// Create an image object from the context
 	CGImageRef flippedImageRef = CGBitmapContextCreateImage(bmContext);
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* flipped = [[UIImage alloc] initWithCGImage:flippedImageRef];
-#else
 	UIImage* flipped = [UIImage imageWithCGImage:flippedImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(flippedImageRef);

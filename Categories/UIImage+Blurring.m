@@ -133,12 +133,8 @@
 		free(destData);
     if (finalData)
         free(finalData);
-	
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* retUIImage = [[UIImage alloc] initWithCGImage:blurredImageRef];
-#else
+
 	UIImage* retUIImage = [UIImage imageWithCGImage:blurredImageRef];
-#endif
 
 	CGImageRelease(blurredImageRef);
 

@@ -42,11 +42,7 @@
 	/// Apply the mask
 	CGImageRef maskedImageRef = CGImageCreateWithMask(imageRefWithAlpha, mask);
 
-#ifdef kNYXReturnRetainedObjects 
-	UIImage* result = [[UIImage alloc] initWithCGImage:maskedImageRef];
-#else
 	UIImage* result = [UIImage imageWithCGImage:maskedImageRef];
-#endif
 
 	/// Cleanup
 	CGImageRelease(maskedImageRef);

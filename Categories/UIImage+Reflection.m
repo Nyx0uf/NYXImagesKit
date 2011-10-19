@@ -38,7 +38,7 @@
 		return nil;
 
 	// create a bitmap graphics context the size of the image
-	CGContextRef mainViewContentContext = NYXCreateBitmapContext(self.size.width, height);
+	CGContextRef mainViewContentContext = NYXGetBitmapContext(self.size.width, height);
 
 	// create a 2 bit CGImage containing a gradient that will be used for masking the
 	// main view content to create the 'fade' of the reflection.  The CGImageCreateWithMask
@@ -55,10 +55,6 @@
 
 	// convert the finished reflection image to a UIImage
 	UIImage* theImage = UIGraphicsGetImageFromCurrentImageContext();
-
-#if kNYXReturnRetainedObjects
-    [theImage retain];
-#endif
 
 	return theImage;
 }
