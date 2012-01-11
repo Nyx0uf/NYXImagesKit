@@ -1,0 +1,14 @@
+//
+//  Prefix.pch
+//  NYXImagesKit
+//
+//  Created by Nyx0uf on 5/2/11.
+//  Copyright 2011 Benjamin Godard. All rights reserved.
+//
+
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+	#import <Foundation/Foundation.h>
+	#import <QuartzCore/QuartzCore.h>
+#endif
