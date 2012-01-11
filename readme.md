@@ -14,7 +14,7 @@ The project is a static library so that you don't have to import the sources in 
 ***NYXImagesKit*** fully supports **ARC** out of the box, there is no configuration necessary. Also, as it is a library you can use it without problems in a **non-ARC** project.
 
 
-## Installation ##
+### Installation ###
 
 First open the **NYXImagesKit.xcodeproj** and build the library, then import the library and the headers in your project, and finally link with these frameworks :
 
@@ -137,7 +137,7 @@ There is also two other methods which take only the path or URL as parameter and
 If your image contains transparent zone and you save it in a format that doesn't support alpha, a fill color will be used, if you don't specify one, the default color will be white.
 
 
-## License ##
+### License ###
 
 ***NYXImagesKit*** is released under the *Simplified BSD license*, see **LICENSE.txt**.
 
