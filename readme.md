@@ -27,7 +27,7 @@ First open the **NYXImagesKit.xcodeproj** and build the library, then import the
 
 Or if you want, you can add the sources to your project and build them along.
 
-## UIImage+Filtering ##
+### UIImage+Filtering ###
 
 This category allows you to apply filters on a *UIImage* object, currently there are 11 filters :
 
@@ -44,26 +44,26 @@ This category allows you to apply filters on a *UIImage* object, currently there
 11. Unsharpen
 
 
-## UIImage+Blurring ##
+### UIImage+Blurring ###
 
 This category is composed of a single method to blur an *UIImage*. On *iOS 4*, blurring is done using **vDSP** and on *iOS 5* it is done using **vImage** and it is about **4x** times faster.
 
 	[myImage gaussianBlurWithBias:0];
 
 
-## UIImage+Masking ##
+### UIImage+Masking ###
 
 This category is composed of a single method which allow to mask an image with another image, you just have to create the mask image you desire.
 
 	UIImage* masked = [myImage maskWithImage:[UIImage imageNamed:@"mask.png"]];
 
 
-## UIImage+Resizing ##
+### UIImage+Resizing ###
 
 This category can be used to crop or to scale images.
 
 
-### Cropping ###
+#### Cropping ####
 
 You can crop your image by 9 different ways :
 
@@ -83,7 +83,7 @@ You can crop your image by 9 different ways :
 <code>NYXCropMode</code> is an enum type which can be found in the header file, it is used to represent the 9 modes above.
 
 
-### Scaling ###
+#### Scaling ####
 
 You have the choice between two methods to scale images, the two methods will keep the aspect ratio of the original image.
 
@@ -91,7 +91,7 @@ You have the choice between two methods to scale images, the two methods will ke
 	UIImage* scaled2 = [myImage scaleToFitSize:(CGSize){width, height}];
 
 
-## UIImage+Rotating ##
+### UIImage+Rotating ###
 
 With this category you can rotate or flip an *UIImage*, flipping is useful if you want to create a reflect effect.
 
@@ -101,14 +101,14 @@ With this category you can rotate or flip an *UIImage*, flipping is useful if yo
 	UIImage* flipped2 = [myImage horizontalFlip];
 
 
-## UIImage+Reflection ##
+### UIImage+Reflection ###
 
 This category was written by Matthias Tretter (@myell0w) and is composed of a single method to create a reflected image.
 
 	UIImage* reflected = [myImage reflectedImageWithHeight:myImage.size.height fromAlpha:0.0f toAlpha:0.5f];
 
 
-## UIImage+Enhancing ##
+### UIImage+Enhancing ###
 
 This category works only on *iOS 5* because it uses **Core Image**, it allows to enhance an image or to perform red eye correction.
 
@@ -116,7 +116,7 @@ This category works only on *iOS 5* because it uses **Core Image**, it allows to
 	[myImage redEyeCorrection];
 
 
-## UIImage+Saving ##
+### UIImage+Saving ###
 
 This category allows you to save an *UIImage* at a specified path or file URL or to your Photos album, there are five types supported :
 
