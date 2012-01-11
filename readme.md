@@ -9,7 +9,7 @@ It requires at least *iOS 4.2*.
 The project is a static library so that you don't have to import the sources in your own project and build them each time.
 
 
-## ARC Support ##
+### ARC Support ###
 
 ***NYXImagesKit*** fully supports **ARC** out of the box, there is no configuration necessary. Also, as it is a library you can use it without problems in a **non-ARC** project.
 
