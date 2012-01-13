@@ -30,6 +30,8 @@
 /* Returns a correct value for a pixel component (0 - 255) */
 #define NYX_SAFE_PIXEL_COMPONENT_VALUE(__COLOR) (NYX_MIN(kNyxMaxPixelComponentValue, NYX_MAX(kNyxMinPixelComponentValue, __COLOR)))
 
+/* iOS version runtime check */
+#define NYX_IOS_VERSION_LESS_THAN(__VERSIONSTRING) ([[[UIDevice currentDevice] systemVersion] compare:__VERSIONSTRING options:NSNumericSearch] == NSOrderedAscending)
 
 CGContextRef NYXCreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow);
 CGImageRef NYXCreateGradientImage(const size_t pixelsWide, const size_t pixelsHigh, const CGFloat fromAlpha, const CGFloat toAlpha);
