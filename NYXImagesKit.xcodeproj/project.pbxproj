@@ -25,13 +25,15 @@
 		1E028A0E144EF39800B6B6D5 /* UIImage+Saving.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E0289FC144EF39800B6B6D5 /* UIImage+Saving.m */; };
 		1E028A0F144EF39800B6B6D5 /* NYXImagesHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E0289FE144EF39800B6B6D5 /* NYXImagesHelper.h */; };
 		1E028A10144EF39800B6B6D5 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E0289FF144EF39800B6B6D5 /* NYXImagesHelper.m */; };
-		1E028A11144EF39800B6B6D5 /* NYXImageKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E028A00144EF39800B6B6D5 /* NYXImageKit.h */; };
+		1E028A11144EF39800B6B6D5 /* NYXImagesKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E028A00144EF39800B6B6D5 /* NYXImagesKit.h */; };
 		1E028A13144EF3AA00B6B6D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E028A12144EF3AA00B6B6D5 /* QuartzCore.framework */; };
 		1E028A15144EF3AF00B6B6D5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E028A14144EF3AF00B6B6D5 /* ImageIO.framework */; };
 		1E028A17144EF3B500B6B6D5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E028A16144EF3B500B6B6D5 /* MobileCoreServices.framework */; };
 		1E028A19144EF41000B6B6D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E028A18144EF41000B6B6D5 /* UIKit.framework */; };
 		1E30CA89148E57CB00106BF8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E30CA88148E57CA00106BF8 /* Accelerate.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1E53F0E41486C3FF00BD33AD /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E53F0E31486C3FF00BD33AD /* CoreImage.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1E9BA7B314C0B0EF0072A0FB /* NYXProgressiveImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E9BA7B114C0B0EF0072A0FB /* NYXProgressiveImageView.h */; };
+		1E9BA7B414C0B0EF0072A0FB /* NYXProgressiveImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BA7B214C0B0EF0072A0FB /* NYXProgressiveImageView.m */; };
 		1EED6787148A314B00B71186 /* UIImage+Enhancing.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EED6785148A314B00B71186 /* UIImage+Enhancing.h */; };
 		1EED6788148A314B00B71186 /* UIImage+Enhancing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EED6786148A314B00B71186 /* UIImage+Enhancing.m */; };
 /* End PBXBuildFile section */
@@ -56,13 +58,15 @@
 		1E0289FC144EF39800B6B6D5 /* UIImage+Saving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Saving.m"; sourceTree = "<group>"; };
 		1E0289FE144EF39800B6B6D5 /* NYXImagesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesHelper.h; sourceTree = "<group>"; };
 		1E0289FF144EF39800B6B6D5 /* NYXImagesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXImagesHelper.m; sourceTree = "<group>"; };
-		1E028A00144EF39800B6B6D5 /* NYXImageKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImageKit.h; sourceTree = "<group>"; };
+		1E028A00144EF39800B6B6D5 /* NYXImagesKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesKit.h; sourceTree = "<group>"; };
 		1E028A12144EF3AA00B6B6D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1E028A14144EF3AF00B6B6D5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		1E028A16144EF3B500B6B6D5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1E028A18144EF41000B6B6D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1E30CA88148E57CA00106BF8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1E53F0E31486C3FF00BD33AD /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		1E9BA7B114C0B0EF0072A0FB /* NYXProgressiveImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXProgressiveImageView.h; sourceTree = "<group>"; };
+		1E9BA7B214C0B0EF0072A0FB /* NYXProgressiveImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXProgressiveImageView.m; sourceTree = "<group>"; };
 		1EED6785148A314B00B71186 /* UIImage+Enhancing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Enhancing.h"; sourceTree = "<group>"; };
 		1EED6786148A314B00B71186 /* UIImage+Enhancing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Enhancing.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				1E0289FD144EF39800B6B6D5 /* Helper */,
+				1E9BA7B014C0B0EF0072A0FB /* Classes */,
 				1E0289EE144EF39800B6B6D5 /* Categories */,
 				1E0289EB144EF37F00B6B6D5 /* Other Sources */,
 				1E0289D9144EF32200B6B6D5 /* Frameworks */,
@@ -154,9 +159,18 @@
 			children = (
 				1E0289FE144EF39800B6B6D5 /* NYXImagesHelper.h */,
 				1E0289FF144EF39800B6B6D5 /* NYXImagesHelper.m */,
-				1E028A00144EF39800B6B6D5 /* NYXImageKit.h */,
+				1E028A00144EF39800B6B6D5 /* NYXImagesKit.h */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		1E9BA7B014C0B0EF0072A0FB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1E9BA7B114C0B0EF0072A0FB /* NYXProgressiveImageView.h */,
+				1E9BA7B214C0B0EF0072A0FB /* NYXProgressiveImageView.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,8 +189,9 @@
 				1E028A0B144EF39800B6B6D5 /* UIImage+Rotating.h in Headers */,
 				1E028A0D144EF39800B6B6D5 /* UIImage+Saving.h in Headers */,
 				1E028A0F144EF39800B6B6D5 /* NYXImagesHelper.h in Headers */,
-				1E028A11144EF39800B6B6D5 /* NYXImageKit.h in Headers */,
+				1E028A11144EF39800B6B6D5 /* NYXImagesKit.h in Headers */,
 				1EED6787148A314B00B71186 /* UIImage+Enhancing.h in Headers */,
+				1E9BA7B314C0B0EF0072A0FB /* NYXProgressiveImageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +255,7 @@
 				1E028A0E144EF39800B6B6D5 /* UIImage+Saving.m in Sources */,
 				1E028A10144EF39800B6B6D5 /* NYXImagesHelper.m in Sources */,
 				1EED6788148A314B00B71186 /* UIImage+Enhancing.m in Sources */,
+				1E9BA7B414C0B0EF0072A0FB /* NYXProgressiveImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

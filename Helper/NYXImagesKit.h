@@ -16,3 +16,4 @@
 #import "UIImage+Resizing.h"
 #import "UIImage+Rotating.h"
 #import "UIImage+Saving.h"
+#import "NYXProgressiveImageView.h"
