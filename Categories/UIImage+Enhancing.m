@@ -14,7 +14,7 @@
 
 @implementation UIImage (NYX_Enhancing)
 
--(UIImage*)autoEnhance
+-(UIImage*)redEyeCorrection
 {
 	/// No Core Image, return original image
 	if (![CIImage class])
@@ -37,7 +37,7 @@
 	return final;
 }
 
--(UIImage*)redEyeCorrection
+-(UIImage*)autoEnhance
 {
 	/// No Core Image, return original image
 	if (![CIImage class])
