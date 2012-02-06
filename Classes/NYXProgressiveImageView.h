@@ -23,6 +23,6 @@
 
 #pragma mark - Public properties
 /// Delegate (use weak if you target only iOS 5)
-@property (nonatomic, assign) id <NYXProgressiveImageViewDelegate> delegate;
+@property (nonatomic, assign) IBOutlet id <NYXProgressiveImageViewDelegate> delegate;
 
 @end
