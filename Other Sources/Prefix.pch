@@ -12,3 +12,7 @@
 	#import <Foundation/Foundation.h>
 	#import <QuartzCore/QuartzCore.h>
 #endif
+
+#if !__has_feature(objc_arc)
+	#error This file must be compiled with ARC.
+#endif
