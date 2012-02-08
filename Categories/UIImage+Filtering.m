@@ -29,11 +29,11 @@ static float __negativeMultiplier = -1.0f;
 
 #pragma mark - Edge detection kernels
 /* vImage kernel */
-static int16_t __s_edgedetect_kernel_3x3[9] = {
+/*static int16_t __s_edgedetect_kernel_3x3[9] = {
 	-1, -1, -1, 
 	-1, 8, -1, 
 	-1, -1, -1
-};
+};*/
 /* vDSP kernel */
 static float __f_edgedetect_kernel_3x3[9] = {
 	-1.0f, -1.0f, -1.0f, 
@@ -208,6 +208,7 @@ static float __f_unsharpen_kernel_3x3[9] = {
 
 -(UIImage*)edgeDetectionWithBias:(NSInteger)bias
 {
+#pragma unused(bias)
 	/// Create an ARGB bitmap context
 	const size_t width = self.size.width;
 	const size_t height = self.size.height;
