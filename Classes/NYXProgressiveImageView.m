@@ -43,8 +43,8 @@
 	long long _expectedSize;
 	/// Connection queue
 	dispatch_queue_t _queue;
-    /// Url
-    NSURL * _url;   
+	/// Url
+	NSURL * _url;   
 }
 
 @synthesize delegate = _delegate;
