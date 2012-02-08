@@ -5,6 +5,7 @@
 //  Created by @Nyx0uf on 13/01/12.
 //  Copyright 2012 Benjamin Godard. All rights reserved.
 //  www.cococabyss.com
+//  Caching stuff by raphaelp
 //
 
 
@@ -111,9 +112,9 @@
 		NSString* cachedImagePath = [cacheDir stringByAppendingPathComponent:[self cachedImageSystemName]];
 		if ([fileManager fileExistsAtPath:cachedImagePath])
 		{
-            NSDate* mofificationDate = [[fileManager attributesOfItemAtPath:cachedImagePath error:nil] objectForKey:NSFileModificationDate];
+			NSDate* mofificationDate = [[fileManager attributesOfItemAtPath:cachedImagePath error:nil] objectForKey:NSFileModificationDate];
             
-            // check modification date
+			// check modification date
 			if (-[mofificationDate timeIntervalSinceNow] > _cacheTime)
 			{
 				// Removes old cache file...
@@ -240,7 +241,7 @@
 	if (_imageSource)
 		CFRelease(_imageSource);
 	_connection = nil;
-    _url = nil;
+	_url = nil;
 	dispatch_release(_queue);
 	CFRunLoopStop(CFRunLoopGetCurrent());
 }
@@ -256,6 +257,7 @@
 	if (_imageSource)
 		CFRelease(_imageSource);
 	_connection = nil;
+	_url = nil;
 	dispatch_release(_queue);
 	CFRunLoopStop(CFRunLoopGetCurrent());
 }
@@ -288,7 +290,7 @@
 
 -(NSString*)cachedImageSystemName
 {
-    const char* concat_str = [[_url absoluteString] UTF8String];
+	const char* concat_str = [[_url absoluteString] UTF8String];
 	if (!concat_str)
 		return @"";
 	
