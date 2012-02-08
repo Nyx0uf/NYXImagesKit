@@ -5,6 +5,7 @@
 //  Created by @Nyx0uf on 13/01/12.
 //  Copyright 2012 Benjamin Godard. All rights reserved.
 //  www.cococabyss.com
+//  Caching stuff by raphaelp
 //
 
 
@@ -20,16 +21,15 @@
 #pragma mark - Public messages
 /// Launch the image download
 -(void)loadImageAtURL:(NSURL*)url;
-// Caching
-+ (void)resetImageCache; // This will remove all cached images managed by any NYXProgressiveImageView instances
-
-#define NYX_DEFAULT_CACHE_TIME 604800 // 7 days
+/// This will remove all cached images managed by any NYXProgressiveImageView instances
++(void)resetImageCache;
 
 #pragma mark - Public properties
 /// Delegate (use weak if you target only iOS 5)
 @property (nonatomic, assign) IBOutlet id <NYXProgressiveImageViewDelegate> delegate;
-// Caching
-@property (nonatomic,getter = isCaching) BOOL caching;
+/// Enable / Disable caching
+@property (nonatomic, getter = isCaching) BOOL caching;
+/// Cache time in seconds
 @property (nonatomic) NSTimeInterval cacheTime;
 
 @end
