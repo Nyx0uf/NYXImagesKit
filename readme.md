@@ -1,6 +1,6 @@
 # NYXImagesKit #
 
-This is a project for iOS which regroups a collection of useful *UIImage* categories to handle operations such as filtering, blurring, enhancing, masking, reflecting, resizing, rotating, saving.
+This is a project for iOS which regroups a collection of useful *UIImage* categories to handle operations such as filtering, blurring, enhancing, masking, reflecting, resizing, rotating, saving. There is also a subclass of *UIImageView* to load an image asynchronously from a URL and display it as it is downloaded.
 
 It requires at least *iOS 4.2*.
 
@@ -137,13 +137,17 @@ There is also two other methods which take only the path or URL as parameter and
 If your image contains transparent zone and you save it in a format that doesn't support alpha, a fill color will be used, if you don't specify one, the default color will be white.
 
 
+### NYXProgressiveImageView ###
+
+This is a subclass of *UIImageView* to load asynchronously an image from an URL and display it as it is being downloaded. Image caching is supported.
+For more informations see <http://www.cocoabyss.com/uikit/nyxprogressiveimageview-nyximageskit/> and <http://www.cocoabyss.com/mac-os-x/progressive-image-download-imageio/>.
+
+
 ### License ###
 
 ***NYXImagesKit*** is released under the *Simplified BSD license*, see **LICENSE.txt**.
 
 I hope you will find this useful, and, feel free to contribute !
-
-Benjamin Godard.
 
 Blog : <http://www.cocoabyss.com/>
 
