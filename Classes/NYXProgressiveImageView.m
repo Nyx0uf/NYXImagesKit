@@ -4,7 +4,7 @@
 //
 //  Created by @Nyx0uf on 13/01/12.
 //  Copyright 2012 Benjamin Godard. All rights reserved.
-//  www.cococabyss.com
+//  www.cocoaintheshell.com
 //  Caching stuff by raphaelp
 //
 
@@ -168,9 +168,11 @@
 		CGImageRef cgImage = CGImageSourceCreateImageAtIndex(_imageSource, 0, NULL);
 		if (cgImage)
 		{
-			if (NYX_IOS_VERSION_LESS_THAN(@"5.0"))
-			{
-				/// iOS 4.x fix to correctly handle JPEG images ( http://www.cocoabyss.com/mac-os-x/progressive-image-download-imageio/ )
+			//if (NYX_IOS_VERSION_LESS_THAN(@"5.0"))
+			//{
+				/// iOS 4.x fix to correctly handle JPEG images ( http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/ )
+				/// If the image doesn't have a transparency layer, the background is black-filled
+				/// So we still need to render the image, it's teh sux.
 				CGImageRef imgTmp = [self createTransitoryImage:cgImage];
 				if (imgTmp)
 				{
@@ -181,14 +183,14 @@
 						self.image = img;
 					});
 				}
-			}
-			else
-			{
-				__block UIImage* img = [[UIImage alloc] initWithCGImage:cgImage];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					self.image = img;
-				});
-			}
+			//}
+			//else
+			//{
+				//__block UIImage* img = [[UIImage alloc] initWithCGImage:cgImage];
+				//dispatch_async(dispatch_get_main_queue(), ^{
+					//self.image = img;
+				//});
+			//}
 			CGImageRelease(cgImage);
 		}
 	}
