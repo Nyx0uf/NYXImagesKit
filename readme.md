@@ -140,7 +140,7 @@ If your image contains transparent zone and you save it in a format that doesn't
 ### NYXProgressiveImageView ###
 
 This is a subclass of *UIImageView* to load asynchronously an image from an URL and display it as it is being downloaded. Image caching is supported.
-For more informations see <http://www.cocoabyss.com/uikit/nyxprogressiveimageview-nyximageskit/> and <http://www.cocoabyss.com/mac-os-x/progressive-image-download-imageio/>.
+For more informations see <http://www.cocoaintheshell.com/2012/01/nyximageskit-class-nyxprogressiveimageview/> and <http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/>.
 
 
 ### License ###
@@ -149,6 +149,6 @@ For more informations see <http://www.cocoabyss.com/uikit/nyxprogressiveimagevie
 
 I hope you will find this useful, and, feel free to contribute !
 
-Blog : <http://www.cocoabyss.com/>
+Blog : <http://www.cocoaintheshell.com/>
 
 Twitter : @Nyx0uf
