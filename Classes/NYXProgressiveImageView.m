@@ -102,11 +102,11 @@
 -(void)loadImageAtURL:(NSURL*)url
 {
     _url = url;
-
+    
 	if (_caching)
 	{
         NSFileManager* fileManager = [[NSFileManager alloc] init];
-
+        
 		// check if file exists on cache
 		NSString* cacheDir = [NYXProgressiveImageView cacheDirectoryAddress];
 		NSString* cachedImagePath = [cacheDir stringByAppendingPathComponent:[self cachedImageSystemName]];
@@ -125,11 +125,15 @@
 				// Loads image from cache without networking
 				UIImage* localImage = [[UIImage alloc] initWithContentsOfFile:cachedImagePath];
 				self.image = localImage;
-				return;
+                
+                if ([_delegate respondsToSelector:@selector(imageDidLoadWithImage:)])
+                    [_delegate imageDidLoadWithImage:localImage];
+				
+                return;
 			}
 		}
 	}
-
+    
 	_queue = dispatch_queue_create("com.cocoabyss.pdlqueue", DISPATCH_QUEUE_SERIAL);
 	dispatch_async(_queue, ^{
 		NSURLRequest* request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10.0f];
@@ -159,10 +163,10 @@
 {
 #pragma unused(connection)
 	[_dataTemp appendData:data];
-
+    
 	const NSUInteger len = [_dataTemp length];
 	CGImageSourceUpdateData(_imageSource, (__bridge CFDataRef)_dataTemp, (len == _expectedSize) ? true : false);
-
+    
 	if (_imageHeight > 0 && _imageWidth > 0)
 	{
 		CGImageRef cgImage = CGImageSourceCreateImageAtIndex(_imageSource, 0, NULL);
@@ -170,26 +174,26 @@
 		{
 			//if (NYX_IOS_VERSION_LESS_THAN(@"5.0"))
 			//{
-				/// iOS 4.x fix to correctly handle JPEG images ( http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/ )
-				/// If the image doesn't have a transparency layer, the background is black-filled
-				/// So we still need to render the image, it's teh sux.
-				CGImageRef imgTmp = [self createTransitoryImage:cgImage];
-				if (imgTmp)
-				{
-					__block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp];
-					CGImageRelease(imgTmp);
-					
-					dispatch_async(dispatch_get_main_queue(), ^{
-						self.image = img;
-					});
-				}
+            /// iOS 4.x fix to correctly handle JPEG images ( http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/ )
+            /// If the image doesn't have a transparency layer, the background is black-filled
+            /// So we still need to render the image, it's teh sux.
+            CGImageRef imgTmp = [self createTransitoryImage:cgImage];
+            if (imgTmp)
+            {
+                __block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp];
+                CGImageRelease(imgTmp);
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.image = img;
+                });
+            }
 			//}
 			//else
 			//{
-				//__block UIImage* img = [[UIImage alloc] initWithCGImage:cgImage];
-				//dispatch_async(dispatch_get_main_queue(), ^{
-					//self.image = img;
-				//});
+            //__block UIImage* img = [[UIImage alloc] initWithCGImage:cgImage];
+            //dispatch_async(dispatch_get_main_queue(), ^{
+            //self.image = img;
+            //});
 			//}
 			CGImageRelease(cgImage);
 		}
@@ -218,21 +222,25 @@
 		UIImage* img = [[UIImage alloc] initWithData:_dataTemp];
 		dispatch_sync(dispatch_get_main_queue(), ^{
 			self.image = img;
-		});
-		if ([_delegate respondsToSelector:@selector(imageDownloadCompletedWithImage:)])
-			[_delegate imageDownloadCompletedWithImage:img];
-
+            
+            if ([_delegate respondsToSelector:@selector(imageDownloadCompletedWithImage:)])
+                [_delegate imageDownloadCompletedWithImage:img];
+            
+            if ([_delegate respondsToSelector:@selector(imageDidLoadWithImage:)])
+                [_delegate imageDidLoadWithImage:img];
+        });
+        
 		if (_caching)
 		{
 			// Create cache directory if it doesn't exist
 			BOOL isDir = YES;
 			
 			NSFileManager* fileManager = [[NSFileManager alloc] init];
-
+            
 			NSString* cacheDir = [NYXProgressiveImageView cacheDirectoryAddress];
 			if (![fileManager fileExistsAtPath:cacheDir isDirectory:&isDir])
 				[fileManager createDirectoryAtPath:cacheDir withIntermediateDirectories:NO attributes:nil error:nil];
-
+            
 			NSString* path = [cacheDir stringByAppendingPathComponent:[self cachedImageSystemName]];
 			[img saveToPath:path uti:CGImageSourceGetType(_imageSource) backgroundFillColor:nil];
 		}
@@ -298,11 +306,11 @@
 	
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5(concat_str, strlen(concat_str), result);
-
+    
     NSMutableString* hash = [[NSMutableString alloc] init];
     for (unsigned int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
         [hash appendFormat:@"%02X", result[i]];
-
+    
     return [hash lowercaseString];
 }
 
