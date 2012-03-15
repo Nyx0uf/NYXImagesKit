@@ -11,6 +11,7 @@
 
 @protocol NYXProgressiveImageViewDelegate <NSObject>
 @optional
+-(void)imageDidLoadWithImage:(UIImage*)img;
 -(void)imageDownloadCompletedWithImage:(UIImage*)img;
 -(void)imageDownloadFailedWithData:(NSData*)data;
 @end
