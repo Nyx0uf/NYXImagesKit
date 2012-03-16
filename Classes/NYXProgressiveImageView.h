@@ -1,5 +1,5 @@
 //
-//  UIImageView+ProgressiveDisplay.h
+//  NYXProgressiveImageView.h
 //  NYXImagesKit
 //
 //  Created by @Nyx0uf on 13/01/12.
@@ -32,5 +32,7 @@
 @property (nonatomic, getter = isCaching) BOOL caching;
 /// Cache time in seconds
 @property (nonatomic) NSTimeInterval cacheTime;
+/// Downloading flag
+@property (nonatomic, readonly, getter = isDownloading) BOOL downloading;
 
 @end

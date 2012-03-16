@@ -1,5 +1,5 @@
 //
-//  UIImageView+ProgressiveDisplay.m
+//  NYXProgressiveImageView.m
 //  NYXImagesKit
 //
 //  Created by @Nyx0uf on 13/01/12.
@@ -16,7 +16,16 @@
 #import <CommonCrypto/CommonDigest.h>
 
 
-#define kNyxDefaultCacheTime 604800.0f // 7 days
+#define kNyxDefaultCacheTimeValue 604800.0f // 7 days
+#define kNyxDefaultTimeoutValue 10.0f
+
+
+typedef struct
+{
+	unsigned int delegateImageDidLoadWithImage:1;
+	unsigned int delegateImageDownloadCompletedWithImage:1;
+	unsigned int delegateImageDownloadFailedWithData:1;
+} NyxDelegateFlags;
 
 
 @interface NYXProgressiveImageView()
@@ -45,14 +54,17 @@
 	/// Connection queue
 	dispatch_queue_t _queue;
 	/// Url
-	NSURL * _url;   
+	NSURL * _url;
+	/// Delegate flags, avoid to many respondsToSelector
+	NyxDelegateFlags _delegateFlags;
 }
 
 @synthesize delegate = _delegate;
 @synthesize caching = _caching;
 @synthesize cacheTime = _cacheTime;
+@synthesize downloading = _downloading;
 
-#pragma mark - Allocations
+#pragma mark - Allocations / Deallocations
 -(id)init
 {
 	if ((self = [super init]))
@@ -98,22 +110,41 @@
 	return self;
 }
 
+-(void)dealloc
+{
+	dispatch_release(_queue), _queue = NULL;
+}
+
 #pragma mark - Public
+-(void)setDelegate:(id<NYXProgressiveImageViewDelegate>)delegate
+{
+	if (delegate != _delegate)
+	{
+		_delegate = delegate;
+		_delegateFlags.delegateImageDidLoadWithImage = [delegate respondsToSelector:@selector(imageDidLoadWithImage:)];
+		_delegateFlags.delegateImageDownloadCompletedWithImage = [delegate respondsToSelector:@selector(imageDownloadCompletedWithImage:)];
+		_delegateFlags.delegateImageDownloadFailedWithData = [delegate respondsToSelector:@selector(imageDownloadFailedWithData:)];
+	}
+}
+
 -(void)loadImageAtURL:(NSURL*)url
 {
+	if (_downloading)
+		return;
+
     _url = url;
-    
+
 	if (_caching)
 	{
         NSFileManager* fileManager = [[NSFileManager alloc] init];
-        
+
 		// check if file exists on cache
 		NSString* cacheDir = [NYXProgressiveImageView cacheDirectoryAddress];
 		NSString* cachedImagePath = [cacheDir stringByAppendingPathComponent:[self cachedImageSystemName]];
 		if ([fileManager fileExistsAtPath:cachedImagePath])
 		{
 			NSDate* mofificationDate = [[fileManager attributesOfItemAtPath:cachedImagePath error:nil] objectForKey:NSFileModificationDate];
-            
+
 			// check modification date
 			if (-[mofificationDate timeIntervalSinceNow] > _cacheTime)
 			{
@@ -124,21 +155,23 @@
 			{
 				// Loads image from cache without networking
 				UIImage* localImage = [[UIImage alloc] initWithContentsOfFile:cachedImagePath];
-				self.image = localImage;
-                
-                if ([_delegate respondsToSelector:@selector(imageDidLoadWithImage:)])
-                    [_delegate imageDidLoadWithImage:localImage];
-				
-                return;
+				dispatch_async(dispatch_get_main_queue(), ^{
+					self.image = localImage;
+
+					if (_delegateFlags.delegateImageDidLoadWithImage)
+						[_delegate imageDidLoadWithImage:localImage];
+				});
+
+				return;
 			}
 		}
 	}
-    
-	_queue = dispatch_queue_create("com.cocoabyss.pdlqueue", DISPATCH_QUEUE_SERIAL);
+
 	dispatch_async(_queue, ^{
-		NSURLRequest* request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10.0f];
+		NSURLRequest* request = [[NSURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:kNyxDefaultTimeoutValue];
 		_connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 		[_connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+		_downloading = YES;
 		[_connection start];
 		CFRunLoopRun();
 	});
@@ -174,26 +207,26 @@
 		{
 			//if (NYX_IOS_VERSION_LESS_THAN(@"5.0"))
 			//{
-            /// iOS 4.x fix to correctly handle JPEG images ( http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/ )
-            /// If the image doesn't have a transparency layer, the background is black-filled
-            /// So we still need to render the image, it's teh sux.
-            CGImageRef imgTmp = [self createTransitoryImage:cgImage];
-            if (imgTmp)
-            {
-                __block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp];
-                CGImageRelease(imgTmp);
+			/// iOS 4.x fix to correctly handle JPEG images ( http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/ )
+			/// If the image doesn't have a transparency layer, the background is black-filled
+			/// So we still need to render the image, it's teh sux.
+			CGImageRef imgTmp = [self createTransitoryImage:cgImage];
+			if (imgTmp)
+			{
+				__block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp];
+				CGImageRelease(imgTmp);
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.image = img;
-                });
-            }
+				dispatch_async(dispatch_get_main_queue(), ^{
+					self.image = img;
+				});
+			}
 			//}
 			//else
 			//{
-            //__block UIImage* img = [[UIImage alloc] initWithCGImage:cgImage];
-            //dispatch_async(dispatch_get_main_queue(), ^{
-            //self.image = img;
-            //});
+			//__block UIImage* img = [[UIImage alloc] initWithCGImage:cgImage];
+			//dispatch_async(dispatch_get_main_queue(), ^{
+			//self.image = img;
+			//});
 			//}
 			CGImageRelease(cgImage);
 		}
@@ -220,16 +253,17 @@
 	if (_dataTemp)
 	{
 		UIImage* img = [[UIImage alloc] initWithData:_dataTemp];
+
 		dispatch_sync(dispatch_get_main_queue(), ^{
+			if (_delegateFlags.delegateImageDownloadCompletedWithImage)
+				[_delegate imageDownloadCompletedWithImage:img];
+
 			self.image = img;
-            
-            if ([_delegate respondsToSelector:@selector(imageDownloadCompletedWithImage:)])
-                [_delegate imageDownloadCompletedWithImage:img];
-            
-            if ([_delegate respondsToSelector:@selector(imageDidLoadWithImage:)])
-                [_delegate imageDidLoadWithImage:img];
-        });
-        
+
+			if (_delegateFlags.delegateImageDidLoadWithImage)
+				[_delegate imageDidLoadWithImage:img];
+		});
+
 		if (_caching)
 		{
 			// Create cache directory if it doesn't exist
@@ -252,7 +286,7 @@
 		CFRelease(_imageSource);
 	_connection = nil;
 	_url = nil;
-	dispatch_release(_queue);
+	_downloading = NO;
 	CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
@@ -260,23 +294,28 @@
 {
 #pragma unused(connection)
 #pragma unused(error)
-	if ([_delegate respondsToSelector:@selector(imageDownloadFailedWithData:)])
-		[_delegate imageDownloadFailedWithData:_dataTemp];
-    
+	if (_delegateFlags.delegateImageDownloadFailedWithData)
+	{
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			[_delegate imageDownloadFailedWithData:_dataTemp];
+		});
+	}
+
 	_dataTemp = nil;
 	if (_imageSource)
 		CFRelease(_imageSource);
 	_connection = nil;
 	_url = nil;
-	dispatch_release(_queue);
+	_downloading = NO;
 	CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
 #pragma mark - Private
 -(void)initializeAttributes
 {
-	_cacheTime = kNyxDefaultCacheTime;
+	_cacheTime = kNyxDefaultCacheTimeValue;
 	_caching = NO;
+	_queue = dispatch_queue_create("com.cits.pdlqueue", DISPATCH_QUEUE_SERIAL);
 }
 
 -(CGImageRef)createTransitoryImage:(CGImageRef)partialImage
