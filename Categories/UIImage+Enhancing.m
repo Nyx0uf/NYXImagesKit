@@ -22,7 +22,7 @@
 
 	CIImage* ciImage = [[CIImage alloc] initWithCGImage:self.CGImage];
 
-	NSArray* adjustments = [ciImage autoAdjustmentFiltersWithOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:kCIImageAutoAdjustRedEye]];
+	NSArray* adjustments = [ciImage autoAdjustmentFiltersWithOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:kCIImageAutoAdjustEnhance]];
 
 	for (CIFilter* filter in adjustments)
 	{
@@ -46,7 +46,7 @@
 	CIImage* ciImage = [[CIImage alloc] initWithCGImage:self.CGImage];
 
 	/// Get the filters and apply them to the image
-	NSArray* filters = [ciImage autoAdjustmentFiltersWithOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:kCIImageAutoAdjustEnhance]];
+	NSArray* filters = [ciImage autoAdjustmentFiltersWithOptions:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:kCIImageAutoAdjustRedEye]];
 	for (CIFilter* filter in filters)
 	{
 		[filter setValue:ciImage forKey:kCIInputImageKey];
