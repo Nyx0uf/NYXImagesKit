@@ -130,7 +130,9 @@ static float __f_unsharpen_kernel_3x3[9] = {
 	vDSP_vfixu8(dataAsFloat, 1, data + 3, 4, pixelsCount);
 
 	CGImageRef brightenedImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* brightened = [UIImage imageWithCGImage:brightenedImageRef];
+	UIImage* brightened = [UIImage imageWithCGImage:brightenedImageRef
+                                              scale:self.scale
+                                        orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(brightenedImageRef);
@@ -196,7 +198,9 @@ static float __f_unsharpen_kernel_3x3[9] = {
 
 	/// Create an image object from the context
 	CGImageRef contrastedImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* contrasted = [UIImage imageWithCGImage:contrastedImageRef];
+	UIImage* contrasted = [UIImage imageWithCGImage:contrastedImageRef
+                                              scale:self.scale
+                                        orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(contrastedImageRef);
@@ -466,6 +470,9 @@ static float __f_unsharpen_kernel_3x3[9] = {
 	/// Create a gray bitmap context
 	const size_t width = self.size.width;
 	const size_t height = self.size.height;
+    
+    CGRect imageRect = CGRectMake(0, 0, self.size.width, self.size.height);
+    
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
 	CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, width * kNyxNumberOfComponentsPerGreyPixel, colorSpace, kCGImageAlphaNone);
 	CGColorSpaceRelease(colorSpace);
@@ -477,12 +484,14 @@ static float __f_unsharpen_kernel_3x3[9] = {
 	CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
 
 	/// Draw the image in the bitmap context
-	CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, self.CGImage);
+	CGContextDrawImage(bmContext, imageRect, self.CGImage);
 
 	/// Create an image object from the context
 	CGImageRef grayscaledImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* grayscaled = [UIImage imageWithCGImage:grayscaledImageRef];
-
+    UIImage *grayscaled = [UIImage imageWithCGImage:grayscaledImageRef
+                                              scale:self.scale 
+                                        orientation:self.imageOrientation];
+        
 	/// Cleanup
 	CGImageRelease(grayscaledImageRef);
 	CGContextRelease(bmContext);
