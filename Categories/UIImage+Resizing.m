@@ -156,30 +156,18 @@
 	if (!bmContext)
 		return nil;
 
-	/// Handle orientation
-	if (UIImageOrientationLeft == self.imageOrientation)
-	{
-		CGContextRotateCTM(bmContext, M_PI_2);
-		CGContextTranslateCTM(bmContext, 0, -destHeight);
-	}
-	else if (UIImageOrientationRight == self.imageOrientation)
-	{
-		CGContextRotateCTM(bmContext, -M_PI_2);
-		CGContextTranslateCTM(bmContext, -destWidth, 0);
-	}
-	else if (UIImageOrientationDown == self.imageOrientation)
-	{
-		CGContextTranslateCTM(bmContext, destWidth, destHeight);
-		CGContextRotateCTM(bmContext, -M_PI);
-	}
-
 	/// Image quality
 	CGContextSetShouldAntialias(bmContext, true);
 	CGContextSetAllowsAntialiasing(bmContext, true);
 	CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
 
 	/// Draw the image in the bitmap context
-	CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = destWidth, .size.height = destHeight}, self.CGImage);
+
+    UIGraphicsPushContext(bmContext);
+    CGContextTranslateCTM(bmContext, 0, destHeight);
+    CGContextScaleCTM(bmContext, 1, -1);
+    [self drawInRect:CGRectMake(0.0, 0.0, destWidth, destHeight)];    
+    UIGraphicsPopContext();
 
 	/// Create an image object from the context
 	CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
