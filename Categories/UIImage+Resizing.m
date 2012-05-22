@@ -59,9 +59,11 @@
 			break;
 	}
 
+    CGRect cropRect = CGRectMake(x * self.scale, y * self.scale, newSize.width * self.scale, newSize.height * self.scale);
+    
 	/// Create the cropped image
-	CGImageRef croppedImageRef = CGImageCreateWithImageInRect(self.CGImage, (CGRect){.origin.x = x, .origin.y = y, .size = newSize});
-	UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef];
+	CGImageRef croppedImageRef = CGImageCreateWithImageInRect(self.CGImage, cropRect);
+	UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef scale:self.scale orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(croppedImageRef);
