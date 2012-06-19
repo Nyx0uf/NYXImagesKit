@@ -121,9 +121,9 @@ typedef struct
 	if (delegate != _delegate)
 	{
 		_delegate = delegate;
-		_delegateFlags.delegateImageDidLoadWithImage = [delegate respondsToSelector:@selector(imageDidLoadWithImage:)];
-		_delegateFlags.delegateImageDownloadCompletedWithImage = [delegate respondsToSelector:@selector(imageDownloadCompletedWithImage:)];
-		_delegateFlags.delegateImageDownloadFailedWithData = [delegate respondsToSelector:@selector(imageDownloadFailedWithData:)];
+		_delegateFlags.delegateImageDidLoadWithImage = (unsigned)[delegate respondsToSelector:@selector(imageDidLoadWithImage:)];
+		_delegateFlags.delegateImageDownloadCompletedWithImage = (unsigned)[delegate respondsToSelector:@selector(imageDownloadCompletedWithImage:)];
+		_delegateFlags.delegateImageDownloadFailedWithData = (unsigned)[delegate respondsToSelector:@selector(imageDownloadFailedWithData:)];
 	}
 }
 
