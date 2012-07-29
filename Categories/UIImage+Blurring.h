@@ -4,7 +4,7 @@
 //
 //  Created by @Nyx0uf on 03/06/11.
 //  Copyright 2012 Benjamin Godard. All rights reserved.
-//  www.cococabyss.com
+//  www.cocoaintheshell.com
 //
 
 

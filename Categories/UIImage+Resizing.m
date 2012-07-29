@@ -4,7 +4,7 @@
 //
 //  Created by @Nyx0uf on 02/05/11.
 //  Copyright 2012 Benjamin Godard. All rights reserved.
-//  www.cococabyss.com
+//  www.cocoaintheshell.com
 //
 
 
@@ -60,7 +60,7 @@
 	}
 
     CGRect cropRect = CGRectMake(x * self.scale, y * self.scale, newSize.width * self.scale, newSize.height * self.scale);
-    
+
 	/// Create the cropped image
 	CGImageRef croppedImageRef = CGImageCreateWithImageInRect(self.CGImage, cropRect);
 	UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef scale:self.scale orientation:self.imageOrientation];
@@ -166,9 +166,9 @@
 	/// Draw the image in the bitmap context
 
     UIGraphicsPushContext(bmContext);
-    CGContextTranslateCTM(bmContext, 0, destHeight);
-    CGContextScaleCTM(bmContext, 1, -1);
-    [self drawInRect:CGRectMake(0.0, 0.0, destWidth, destHeight)];    
+    CGContextTranslateCTM(bmContext, 0.0f, destHeight);
+    CGContextScaleCTM(bmContext, 1.0f, -1.0f);
+    [self drawInRect:(CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = destWidth, .size.height = destHeight}];    
     UIGraphicsPopContext();
 
 	/// Create an image object from the context
