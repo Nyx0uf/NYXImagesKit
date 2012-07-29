@@ -54,7 +54,7 @@ typedef struct
 	/// Connection queue
 	dispatch_queue_t _queue;
 	/// Url
-	NSURL * _url;
+	NSURL* _url;
 	/// Delegate flags, avoid to many respondsToSelector
 	NyxDelegateFlags _delegateFlags;
 }
@@ -342,14 +342,14 @@ typedef struct
 	const char* concat_str = [[_url absoluteString] UTF8String];
 	if (!concat_str)
 		return @"";
-	
+
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5(concat_str, strlen(concat_str), result);
-    
+
     NSMutableString* hash = [[NSMutableString alloc] init];
     for (unsigned int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
         [hash appendFormat:@"%02X", result[i]];
-    
+
     return [hash lowercaseString];
 }
 
