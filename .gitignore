@@ -13,3 +13,4 @@ build
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
+*.xcuserstate
