@@ -112,7 +112,8 @@ typedef struct
 
 -(void)dealloc
 {
-	dispatch_release(_queue), _queue = NULL;
+	NYX_DISPATCH_RELEASE(_queue);
+	_queue = NULL;
 }
 
 #pragma mark - Public
