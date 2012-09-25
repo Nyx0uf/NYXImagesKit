@@ -51,6 +51,8 @@ typedef struct
 	int _imageHeight;
 	/// Expected image size
 	long long _expectedSize;
+	/// Image orientation
+	UIImageOrientation _orientation;
 	/// Connection queue
 	dispatch_queue_t _queue;
 	/// Url
@@ -214,7 +216,7 @@ typedef struct
 			CGImageRef imgTmp = [self createTransitoryImage:cgImage];
 			if (imgTmp)
 			{
-				__block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp];
+				__block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp scale:1.0f orientation:_orientation];
 				CGImageRelease(imgTmp);
                 
 				dispatch_async(dispatch_get_main_queue(), ^{
@@ -243,6 +245,11 @@ typedef struct
 			val = CFDictionaryGetValue(dic, kCGImagePropertyPixelWidth);
 			if (val)
 				CFNumberGetValue(val, kCFNumberIntType, &_imageWidth);
+			val = CFDictionaryGetValue(dic, kCGImagePropertyOrientation);
+			if (val)
+				CFNumberGetValue(val, kCFNumberIntType, &_orientation);
+			else
+				_orientation = UIImageOrientationUp;
 			CFRelease(dic);
 		}
 	}
@@ -317,6 +324,7 @@ typedef struct
 	_cacheTime = kNyxDefaultCacheTimeValue;
 	_caching = NO;
 	_queue = dispatch_queue_create("com.cits.pdlqueue", DISPATCH_QUEUE_SERIAL);
+	_orientation = UIImageOrientationUp;
 }
 
 -(CGImageRef)createTransitoryImage:(CGImageRef)partialImage
