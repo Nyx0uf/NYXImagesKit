@@ -2,9 +2,9 @@
 
 This is a project for iOS which regroups a collection of useful *UIImage* categories to handle operations such as filtering, blurring, enhancing, masking, reflecting, resizing, rotating, saving. There is also a subclass of *UIImageView* to load an image asynchronously from a URL and display it as it is downloaded.
 
-It requires at least *iOS 4.2*.
+It requires at least *iOS 5.1*.
 
-***NYXImagesKit*** is designed to be very efficient, **vDSP** is used when possible, and on *iOS 5*, some filters use **Core Image** or **vImage** to be as fast as possible.
+***NYXImagesKit*** is designed to be very efficient, **vDSP** is used when possible, some filters use **Core Image** or **vImage** to be as fast as possible.
 
 The project is a static library so that you don't have to import the sources in your own project and build them each time.
 
@@ -23,7 +23,7 @@ First open the **NYXImagesKit.xcodeproj** and build the library, then import the
 - **ImageIO**
 - **MobileCoreServices**
 - **QuartzCore**
-- **CoreImage**, if you target *iOS 4.2 & 4.3* you must weak link.
+- **CoreImage**
 
 Or if you want, you can add the sources to your project and build them along.
 
@@ -46,7 +46,7 @@ This category allows you to apply filters on a *UIImage* object, currently there
 
 ### UIImage+Blurring ###
 
-This category is composed of a single method to blur an *UIImage*. On *iOS 4*, blurring is done using **vDSP** and on *iOS 5* it is done using **vImage** and it is about **4x** times faster.
+This category is composed of a single method to blur an *UIImage*. Blurring is done using is done using **vImage**.
 
 	[myImage gaussianBlurWithBias:0];
 
