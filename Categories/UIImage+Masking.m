@@ -3,7 +3,7 @@
 //  NYXImagesKit
 //
 //  Created by @Nyx0uf on 02/06/11.
-//  Copyright 2012 Benjamin Godard. All rights reserved.
+//  Copyright 2012 Nyx0uf. All rights reserved.
 //  www.cocoaintheshell.com
 //
 
@@ -16,8 +16,8 @@
 -(UIImage*)maskWithImage:(UIImage*)maskImage
 {
 	/// Create a bitmap context with valid alpha
-	const size_t originalWidth = self.size.width;
-	const size_t originalHeight = self.size.height;
+	const size_t originalWidth = (size_t)self.size.width;
+	const size_t originalHeight = (size_t)self.size.height;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(originalWidth, originalHeight, 0);
 	if (!bmContext)
 		return nil;
@@ -29,7 +29,7 @@
 
 	/// Image mask
 	CGImageRef cgMaskImage = maskImage.CGImage; 
-	CGImageRef mask = CGImageMaskCreate(maskImage.size.width, maskImage.size.height, CGImageGetBitsPerComponent(cgMaskImage), CGImageGetBitsPerPixel(cgMaskImage), CGImageGetBytesPerRow(cgMaskImage), CGImageGetDataProvider(cgMaskImage), NULL, false);
+	CGImageRef mask = CGImageMaskCreate((size_t)maskImage.size.width, (size_t)maskImage.size.height, CGImageGetBitsPerComponent(cgMaskImage), CGImageGetBitsPerPixel(cgMaskImage), CGImageGetBytesPerRow(cgMaskImage), CGImageGetDataProvider(cgMaskImage), NULL, false);
 
 	/// Draw the original image in the bitmap context
 	const CGRect r = (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = originalWidth, .size.height = originalHeight};
