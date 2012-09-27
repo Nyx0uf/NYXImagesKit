@@ -26,8 +26,8 @@
 +(void)resetImageCache;
 
 #pragma mark - Public properties
-/// Delegate (use weak if you target only iOS 5)
-@property (nonatomic, assign) IBOutlet id <NYXProgressiveImageViewDelegate> delegate;
+/// Delegate
+@property (nonatomic, weak) IBOutlet id <NYXProgressiveImageViewDelegate> delegate;
 /// Enable / Disable caching
 @property (nonatomic, getter = isCaching) BOOL caching;
 /// Cache time in seconds
