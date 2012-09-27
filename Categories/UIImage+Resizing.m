@@ -3,7 +3,7 @@
 //  NYXImagesKit
 //
 //  Created by @Nyx0uf on 02/05/11.
-//  Copyright 2012 Benjamin Godard. All rights reserved.
+//  Copyright 2012 Nyx0uf. All rights reserved.
 //  www.cocoaintheshell.com
 //
 
@@ -79,8 +79,8 @@
 
 -(UIImage*)scaleByFactor:(float)scaleFactor
 {
-	const size_t originalWidth = self.size.width * scaleFactor;
-	const size_t originalHeight = self.size.height * scaleFactor;
+	const size_t originalWidth = (size_t)(self.size.width * scaleFactor);
+	const size_t originalHeight = (size_t)(self.size.height * scaleFactor);
 	/// Number of bytes per row, each pixel in the bitmap will be represented by 4 bytes (ARGB), 8 bits of alpha/red/green/blue
 	const size_t bytesPerRow = originalWidth * kNyxNumberOfComponentsPerARBGPixel;
 
@@ -92,18 +92,18 @@
 	/// Handle orientation
 	if (UIImageOrientationLeft == self.imageOrientation)
 	{
-		CGContextRotateCTM(bmContext, M_PI_2);
+		CGContextRotateCTM(bmContext, (CGFloat)M_PI_2);
 		CGContextTranslateCTM(bmContext, 0, -originalHeight);
 	}
 	else if (UIImageOrientationRight == self.imageOrientation)
 	{
-		CGContextRotateCTM(bmContext, -M_PI_2);
+		CGContextRotateCTM(bmContext, (CGFloat)-M_PI_2);
 		CGContextTranslateCTM(bmContext, -originalWidth, 0);
 	}
 	else if (UIImageOrientationDown == self.imageOrientation)
 	{
 		CGContextTranslateCTM(bmContext, originalWidth, originalHeight);
-		CGContextRotateCTM(bmContext, -M_PI);
+		CGContextRotateCTM(bmContext, (CGFloat)-M_PI);
 	}
 
 	/// Image quality
@@ -127,30 +127,30 @@
 
 -(UIImage*)scaleToFitSize:(CGSize)newSize
 {
-	const size_t originalWidth = self.size.width;
-	const size_t originalHeight = self.size.height;
+	const size_t originalWidth = (size_t)self.size.width;
+	const size_t originalHeight = (size_t)self.size.height;
 
 	/// Keep aspect ratio
 	size_t destWidth, destHeight;
 	if (originalWidth > originalHeight)
 	{
-		destWidth = newSize.width;
-		destHeight = originalHeight * newSize.width / originalWidth;
+		destWidth = (size_t)newSize.width;
+		destHeight = (size_t)(originalHeight * newSize.width / originalWidth);
 	}
 	else
 	{
-		destHeight = newSize.height;
-		destWidth = originalWidth * newSize.height / originalHeight;
+		destHeight = (size_t)newSize.height;
+		destWidth = (size_t)(originalWidth * newSize.height / originalHeight);
 	}
 	if (destWidth > newSize.width)
 	{ 
-		destWidth = newSize.width; 
-		destHeight = originalHeight * newSize.width / originalWidth; 
+		destWidth = (size_t)newSize.width; 
+		destHeight = (size_t)(originalHeight * newSize.width / originalWidth);
 	} 
 	if (destHeight > newSize.height)
 	{ 
-		destHeight = newSize.height; 
-		destWidth = originalWidth * newSize.height / originalHeight; 
+		destHeight = (size_t)newSize.height; 
+		destWidth = (size_t)(originalWidth * newSize.height / originalHeight);
 	}
 
 	/// Create an ARGB bitmap context

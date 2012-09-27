@@ -4,7 +4,7 @@
 //
 //  Created by Matthias Tretter on 02/06/11.
 //  Originally Created by @Nyx0uf on 02/05/11.
-//  Copyright 2012 Benjamin Godard. All rights reserved.
+//  Copyright 2012 Nyx0uf. All rights reserved.
 //  www.cocoaintheshell.com
 //
 

@@ -3,7 +3,7 @@
 //  NYXImagesKit
 //
 //  Created by @Nyx0uf on 02/05/11.
-//  Copyright 2012 Benjamin Godard. All rights reserved.
+//  Copyright 2012 Nyx0uf. All rights reserved.
 //  www.cocoaintheshell.com
 //
 
@@ -48,12 +48,6 @@ static int16_t __s_emboss_kernel_3x3[9] = {
 	0, 1, 0, 
 	0, 0, 2
 };
-/* vDSP kernel */
-static float __f_emboss_kernel_3x3[9] = {
-	-2.0f, 0.0f, 0.0f, 
-	0.0f, 1.0f, 0.0f, 
-	0.0f, 0.0f, 2.0f
-};
 
 #pragma mark - Sharpen kernels
 /* vImage kernel */
@@ -61,12 +55,6 @@ static int16_t __s_sharpen_kernel_3x3[9] = {
 	-1, -1, -1, 
 	-1, 9, -1, 
 	-1, -1, -1
-};
-/* vDSP kernel */
-static float __f_sharpen_kernel_3x3[9] = {
-	-1.0f, -1.0f, -1.0f, 
-	-1.0f, 9.0f, -1.0f, 
-	-1.0f, -1.0f, -1.0f
 };
 
 #pragma mark - Unsharpen kernels
@@ -76,12 +64,6 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 	-1, 17, -1, 
 	-1, -1, -1
 };
-/* vDSP kernel */
-static float __f_unsharpen_kernel_3x3[9] = {
-	-1.0f/9.0f, -1.0f/9.0f, -1.0f/9.0f, 
-	-1.0f/9.0f, 17.0f/9.0f, -1.0f/9.0f, 
-	-1.0f/9.0f, -1.0f/9.0f, -1.0f/9.0f
-};
 
 
 @implementation UIImage (NYX_Filtering)
@@ -90,8 +72,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 -(UIImage*)brightenWithValue:(float)value
 {
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel);
 	if (!bmContext) 
 		return nil;
@@ -130,9 +112,7 @@ static float __f_unsharpen_kernel_3x3[9] = {
 	vDSP_vfixu8(dataAsFloat, 1, data + 3, 4, pixelsCount);
 
 	CGImageRef brightenedImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* brightened = [UIImage imageWithCGImage:brightenedImageRef
-                                              scale:self.scale
-                                        orientation:self.imageOrientation];
+	UIImage* brightened = [UIImage imageWithCGImage:brightenedImageRef scale:self.scale orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(brightenedImageRef);
@@ -146,8 +126,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 -(UIImage*)contrastAdjustmentWithValue:(float)value
 {
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel);
 	if (!bmContext) 
 		return nil;
@@ -198,9 +178,7 @@ static float __f_unsharpen_kernel_3x3[9] = {
 
 	/// Create an image object from the context
 	CGImageRef contrastedImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* contrasted = [UIImage imageWithCGImage:contrastedImageRef
-                                              scale:self.scale
-                                        orientation:self.imageOrientation];
+	UIImage* contrasted = [UIImage imageWithCGImage:contrastedImageRef scale:self.scale orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(contrastedImageRef);
@@ -214,8 +192,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 {
 #pragma unused(bias)
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow);
 	if (!bmContext) 
@@ -302,8 +280,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 -(UIImage*)embossWithBias:(NSInteger)bias
 {
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow);
 	if (!bmContext) 
@@ -320,48 +298,15 @@ static float __f_unsharpen_kernel_3x3[9] = {
 		return nil;
 	}
 
-	/// vImage (iOS 5)
-	if ((&vImageConvolveWithBias_ARGB8888))
-	{
-		const size_t n = sizeof(UInt8) * width * height * 4;
-		void* outt = malloc(n);
-		vImage_Buffer src = {data, height, width, bytesPerRow};
-		vImage_Buffer dest = {outt, height, width, bytesPerRow};
-		vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_emboss_kernel_3x3, 3, 3, 1/*divisor*/, bias, NULL, kvImageCopyInPlace);
-
-		memcpy(data, outt, n);
-
-		free(outt);
-	}
-	else
-	{
-		const size_t pixelsCount = width * height;
-		const size_t n = sizeof(float) * pixelsCount;
-		float* dataAsFloat = malloc(n);
-		float* resultAsFloat = malloc(n);
-		float min = (float)kNyxMinPixelComponentValue, max = (float)kNyxMaxPixelComponentValue;
-
-		/// Red components
-		vDSP_vfltu8(data + 1, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_emboss_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 1, 4, pixelsCount);
-
-		/// Green components
-		vDSP_vfltu8(data + 2, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_emboss_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 2, 4, pixelsCount);
-
-		/// Blue components
-		vDSP_vfltu8(data + 3, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_emboss_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 3, 4, pixelsCount);
-
-		free(dataAsFloat);
-		free(resultAsFloat);
-	}
+	const size_t n = sizeof(UInt8) * width * height * 4;
+	void* outt = malloc(n);
+	vImage_Buffer src = {data, height, width, bytesPerRow};
+	vImage_Buffer dest = {outt, height, width, bytesPerRow};
+	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_emboss_kernel_3x3, 3, 3, 1/*divisor*/, bias, NULL, kvImageCopyInPlace);
+	
+	memcpy(data, outt, n);
+	
+	free(outt);
 
 	CGImageRef embossImageRef = CGBitmapContextCreateImage(bmContext);
 	UIImage* emboss = [UIImage imageWithCGImage:embossImageRef];
@@ -376,8 +321,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 /// (0.01, 8)
 -(UIImage*)gammaCorrectionWithValue:(float)value
 {
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	/// Number of bytes per row, each pixel in the bitmap will be represented by 4 bytes (ARGB), 8 bits of alpha/red/green/blue
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 
@@ -397,61 +342,43 @@ static float __f_unsharpen_kernel_3x3[9] = {
 		return nil;
 	}
 
-	/// vForce functions (iOS 5)
-	if ((&vvpowf))
-	{
-		const size_t pixelsCount = width * height;
-		const size_t n = sizeof(float) * pixelsCount;
-		float* dataAsFloat = (float*)malloc(n);
-		float* temp = (float*)malloc(n);
-		float min = (float)kNyxMinPixelComponentValue, max = (float)kNyxMaxPixelComponentValue;
-		const int iPixels = (int)pixelsCount;
-
-		/// Need a vector with same size :(
-		vDSP_vfill(&value, temp, 1, pixelsCount);
-
-		/// Calculate red components
-		vDSP_vfltu8(data + 1, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_vsdiv(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
-		vvpowf(dataAsFloat, temp, dataAsFloat, &iPixels);
-		vDSP_vsmul(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
-		vDSP_vclip(dataAsFloat, 1, &min, &max, dataAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(dataAsFloat, 1, data + 1, 4, pixelsCount);
-
-		/// Calculate green components
-		vDSP_vfltu8(data + 2, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_vsdiv(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
-		vvpowf(dataAsFloat, temp, dataAsFloat, &iPixels);
-		vDSP_vsmul(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
-		vDSP_vclip(dataAsFloat, 1, &min, &max, dataAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(dataAsFloat, 1, data + 2, 4, pixelsCount);
-
-		/// Calculate blue components
-		vDSP_vfltu8(data + 3, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_vsdiv(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
-		vvpowf(dataAsFloat, temp, dataAsFloat, &iPixels);
-		vDSP_vsmul(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
-		vDSP_vclip(dataAsFloat, 1, &min, &max, dataAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(dataAsFloat, 1, data + 3, 4, pixelsCount);	
-
-		/// Cleanup
-		free(temp);
-		free(dataAsFloat);
-	}
-	else
-	{
-		const size_t bitmapByteCount = bytesPerRow * height;
-		for (size_t i = 0; i < bitmapByteCount; i += kNyxNumberOfComponentsPerARBGPixel)
-		{
-			const float red = (float)data[i + 1];
-			const float green = (float)data[i + 2];
-			const float blue = (float)data[i + 3];
-
-			data[i + 1] = NYX_SAFE_PIXEL_COMPONENT_VALUE(255 * powf((red / 255.0f), value));
-			data[i + 2] = NYX_SAFE_PIXEL_COMPONENT_VALUE(255 * powf((green / 255.0f), value));
-			data[i + 3] = NYX_SAFE_PIXEL_COMPONENT_VALUE(255 * powf((blue / 255.0f), value));
-		}
-	}
+	const size_t pixelsCount = width * height;
+	const size_t n = sizeof(float) * pixelsCount;
+	float* dataAsFloat = (float*)malloc(n);
+	float* temp = (float*)malloc(n);
+	float min = (float)kNyxMinPixelComponentValue, max = (float)kNyxMaxPixelComponentValue;
+	const int iPixels = (int)pixelsCount;
+	
+	/// Need a vector with same size :(
+	vDSP_vfill(&value, temp, 1, pixelsCount);
+	
+	/// Calculate red components
+	vDSP_vfltu8(data + 1, 4, dataAsFloat, 1, pixelsCount);
+	vDSP_vsdiv(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
+	vvpowf(dataAsFloat, temp, dataAsFloat, &iPixels);
+	vDSP_vsmul(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
+	vDSP_vclip(dataAsFloat, 1, &min, &max, dataAsFloat, 1, pixelsCount);
+	vDSP_vfixu8(dataAsFloat, 1, data + 1, 4, pixelsCount);
+	
+	/// Calculate green components
+	vDSP_vfltu8(data + 2, 4, dataAsFloat, 1, pixelsCount);
+	vDSP_vsdiv(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
+	vvpowf(dataAsFloat, temp, dataAsFloat, &iPixels);
+	vDSP_vsmul(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
+	vDSP_vclip(dataAsFloat, 1, &min, &max, dataAsFloat, 1, pixelsCount);
+	vDSP_vfixu8(dataAsFloat, 1, data + 2, 4, pixelsCount);
+	
+	/// Calculate blue components
+	vDSP_vfltu8(data + 3, 4, dataAsFloat, 1, pixelsCount);
+	vDSP_vsdiv(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
+	vvpowf(dataAsFloat, temp, dataAsFloat, &iPixels);
+	vDSP_vsmul(dataAsFloat, 1, &max, dataAsFloat, 1, pixelsCount);
+	vDSP_vclip(dataAsFloat, 1, &min, &max, dataAsFloat, 1, pixelsCount);
+	vDSP_vfixu8(dataAsFloat, 1, data + 3, 4, pixelsCount);
+	
+	/// Cleanup
+	free(temp);
+	free(dataAsFloat);
 
 	/// Create an image object from the context
 	CGImageRef gammaImageRef = CGBitmapContextCreateImage(bmContext);
@@ -468,8 +395,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 {
 	/* const UInt8 luminance = (red * 0.2126) + (green * 0.7152) + (blue * 0.0722); // Good luminance value */
 	/// Create a gray bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
     
     CGRect imageRect = CGRectMake(0, 0, self.size.width, self.size.height);
     
@@ -488,9 +415,7 @@ static float __f_unsharpen_kernel_3x3[9] = {
 
 	/// Create an image object from the context
 	CGImageRef grayscaledImageRef = CGBitmapContextCreateImage(bmContext);
-    UIImage *grayscaled = [UIImage imageWithCGImage:grayscaledImageRef
-                                              scale:self.scale 
-                                        orientation:self.imageOrientation];
+    UIImage *grayscaled = [UIImage imageWithCGImage:grayscaledImageRef scale:self.scale orientation:self.imageOrientation];
         
 	/// Cleanup
 	CGImageRelease(grayscaledImageRef);
@@ -502,8 +427,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 -(UIImage*)invert
 {
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel);
 	if (!bmContext) 
 		return nil;
@@ -562,8 +487,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 -(UIImage*)opacity:(float)value
 {
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel);
 	if (!bmContext) 
 		return nil;
@@ -585,7 +510,7 @@ static float __f_unsharpen_kernel_3x3[9] = {
 
 -(UIImage*)sepia
 {
-	if (![CIImage class])
+	if ([CIImage class])
 	{
 		/// The sepia output from Core Image is nicer than manual method and 1.6x faster than vDSP
 		CIImage* ciImage = [[CIImage alloc] initWithCGImage:self.CGImage];
@@ -599,8 +524,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 	{
 		/* 1.6x faster than before */
 		/// Create an ARGB bitmap context
-		const size_t width = self.size.width;
-		const size_t height = self.size.height;
+		const size_t width = (size_t)self.size.width;
+		const size_t height = (size_t)self.size.height;
 		CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel);
 		if (!bmContext) 
 			return nil;
@@ -677,8 +602,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 -(UIImage*)sharpenWithBias:(NSInteger)bias
 {
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow);
 	if (!bmContext) 
@@ -695,48 +620,15 @@ static float __f_unsharpen_kernel_3x3[9] = {
 		return nil;
 	}
 
-	/// vImage (iOS 5)
-	if ((&vImageConvolveWithBias_ARGB8888))
-	{
-		const size_t n = sizeof(UInt8) * width * height * 4;
-		void* outt = malloc(n);
-		vImage_Buffer src = {data, height, width, bytesPerRow};
-		vImage_Buffer dest = {outt, height, width, bytesPerRow};
-		vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_sharpen_kernel_3x3, 3, 3, 1/*divisor*/, bias, NULL, kvImageCopyInPlace);
-
-		memcpy(data, outt, n);
-
-		free(outt);
-	}
-	else
-	{
-		const size_t pixelsCount = width * height;
-		const size_t n = sizeof(float) * pixelsCount;
-		float* dataAsFloat = malloc(n);
-		float* resultAsFloat = malloc(n);
-		float min = (float)kNyxMinPixelComponentValue, max = (float)kNyxMaxPixelComponentValue;
-
-		/// Red components
-		vDSP_vfltu8(data + 1, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_sharpen_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 1, 4, pixelsCount);
-
-		/// Green components
-		vDSP_vfltu8(data + 2, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_sharpen_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 2, 4, pixelsCount);
-
-		/// Blue components
-		vDSP_vfltu8(data + 3, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_sharpen_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 3, 4, pixelsCount);
-
-		free(dataAsFloat);
-		free(resultAsFloat);
-	}
+	const size_t n = sizeof(UInt8) * width * height * 4;
+	void* outt = malloc(n);
+	vImage_Buffer src = {data, height, width, bytesPerRow};
+	vImage_Buffer dest = {outt, height, width, bytesPerRow};
+	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_sharpen_kernel_3x3, 3, 3, 1/*divisor*/, bias, NULL, kvImageCopyInPlace);
+	
+	memcpy(data, outt, n);
+	
+	free(outt);
 
 	CGImageRef sharpenedImageRef = CGBitmapContextCreateImage(bmContext);
 	UIImage* sharpened = [UIImage imageWithCGImage:sharpenedImageRef];
@@ -751,8 +643,8 @@ static float __f_unsharpen_kernel_3x3[9] = {
 -(UIImage*)unsharpenWithBias:(NSInteger)bias
 {
 	/// Create an ARGB bitmap context
-	const size_t width = self.size.width;
-	const size_t height = self.size.height;
+	const size_t width = (size_t)self.size.width;
+	const size_t height = (size_t)self.size.height;
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow);
 	if (!bmContext) 
@@ -769,48 +661,15 @@ static float __f_unsharpen_kernel_3x3[9] = {
 		return nil;
 	}
 
-	/// vImage (iOS 5)
-	if ((&vImageConvolveWithBias_ARGB8888))
-	{
-		const size_t n = sizeof(UInt8) * width * height * 4;
-		void* outt = malloc(n);
-		vImage_Buffer src = {data, height, width, bytesPerRow};
-		vImage_Buffer dest = {outt, height, width, bytesPerRow};
-		vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_unsharpen_kernel_3x3, 3, 3, 9/*divisor*/, bias, NULL, kvImageCopyInPlace);
-
-		memcpy(data, outt, n);
-
-		free(outt);
-	}
-	else
-	{
-		const size_t pixelsCount = width * height;
-		const size_t n = sizeof(float) * pixelsCount;
-		float* dataAsFloat = malloc(n);
-		float* resultAsFloat = malloc(n);
-		float min = (float)kNyxMinPixelComponentValue, max = (float)kNyxMaxPixelComponentValue;
-
-		/// Red components
-		vDSP_vfltu8(data + 1, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_unsharpen_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 1, 4, pixelsCount);
-
-		/// Green components
-		vDSP_vfltu8(data + 2, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_unsharpen_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 2, 4, pixelsCount);
-
-		/// Blue components
-		vDSP_vfltu8(data + 3, 4, dataAsFloat, 1, pixelsCount);
-		vDSP_f3x3(dataAsFloat, height, width, __f_unsharpen_kernel_3x3, resultAsFloat);
-		vDSP_vclip(resultAsFloat, 1, &min, &max, resultAsFloat, 1, pixelsCount);
-		vDSP_vfixu8(resultAsFloat, 1, data + 3, 4, pixelsCount);
-
-		free(dataAsFloat);
-		free(resultAsFloat);
-	}
+	const size_t n = sizeof(UInt8) * width * height * 4;
+	void* outt = malloc(n);
+	vImage_Buffer src = {data, height, width, bytesPerRow};
+	vImage_Buffer dest = {outt, height, width, bytesPerRow};
+	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_unsharpen_kernel_3x3, 3, 3, 9/*divisor*/, bias, NULL, kvImageCopyInPlace);
+	
+	memcpy(data, outt, n);
+	
+	free(outt);
 
 	CGImageRef unsharpenedImageRef = CGBitmapContextCreateImage(bmContext);
 	UIImage* unsharpened = [UIImage imageWithCGImage:unsharpenedImageRef];
