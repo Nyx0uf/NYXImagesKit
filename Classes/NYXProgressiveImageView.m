@@ -3,7 +3,7 @@
 //  NYXImagesKit
 //
 //  Created by @Nyx0uf on 13/01/12.
-//  Copyright 2012 Benjamin Godard. All rights reserved.
+//  Copyright 2012 Nyx0uf. All rights reserved.
 //  www.cocoaintheshell.com
 //  Caching stuff by raphaelp
 //
@@ -52,7 +52,7 @@ typedef struct
 	/// Expected image size
 	long long _expectedSize;
 	/// Image orientation
-	UIImageOrientation _orientation;
+	UIImageOrientation _imageOrientation;
 	/// Connection queue
 	dispatch_queue_t _queue;
 	/// Url
@@ -216,7 +216,7 @@ typedef struct
 			CGImageRef imgTmp = [self createTransitoryImage:cgImage];
 			if (imgTmp)
 			{
-				__block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp scale:1.0f orientation:_orientation];
+				__block UIImage* img = [[UIImage alloc] initWithCGImage:imgTmp scale:1.0f orientation:_imageOrientation];
 				CGImageRelease(imgTmp);
                 
 				dispatch_async(dispatch_get_main_queue(), ^{
@@ -245,11 +245,16 @@ typedef struct
 			val = CFDictionaryGetValue(dic, kCGImagePropertyPixelWidth);
 			if (val)
 				CFNumberGetValue(val, kCFNumberIntType, &_imageWidth);
-			val = CFDictionaryGetValue(dic, kCGImagePropertyOrientation);
+
+            val = CFDictionaryGetValue(dic, kCGImagePropertyOrientation);
 			if (val)
-				CFNumberGetValue(val, kCFNumberIntType, &_orientation);
+			{
+				int orientation; // Note: This is an EXIF int for orientation, a number between 1 and 8
+				CFNumberGetValue(val, kCFNumberIntType, &orientation);
+				_imageOrientation = [NYXProgressiveImageView exifOrientationToiOSOrientation:orientation];
+			}
 			else
-				_orientation = UIImageOrientationUp;
+				_imageOrientation = UIImageOrientationUp;
 			CFRelease(dic);
 		}
 	}
@@ -324,7 +329,7 @@ typedef struct
 	_cacheTime = kNyxDefaultCacheTimeValue;
 	_caching = NO;
 	_queue = dispatch_queue_create("com.cits.pdlqueue", DISPATCH_QUEUE_SERIAL);
-	_orientation = UIImageOrientationUp;
+	_imageOrientation = UIImageOrientationUp;
 }
 
 -(CGImageRef)createTransitoryImage:(CGImageRef)partialImage
@@ -365,6 +370,41 @@ typedef struct
 -(void)resetCache
 {
     [[[NSFileManager alloc] init] removeItemAtPath:[[NYXProgressiveImageView cacheDirectoryAddress] stringByAppendingPathComponent:[self cachedImageSystemName]] error:nil];
+}
+
++(UIImageOrientation)exifOrientationToiOSOrientation:(int)exifOrientation
+{
+	UIImageOrientation orientation = UIImageOrientationUp;
+	switch (exifOrientation)
+	{
+		case 1:
+			orientation = UIImageOrientationUp;
+			break;
+		case 3:
+			orientation = UIImageOrientationDown;
+			break;
+		case 8:
+			orientation = UIImageOrientationLeft;
+			break;
+		case 6:
+			orientation = UIImageOrientationRight;
+			break;
+		case 2:
+			orientation = UIImageOrientationUpMirrored;
+			break;
+		case 4:
+			orientation = UIImageOrientationDownMirrored;
+			break;
+		case 5:
+			orientation = UIImageOrientationLeftMirrored;
+			break;
+		case 7:
+			orientation = UIImageOrientationRightMirrored;
+			break;
+		default:
+			break;
+	}
+	return orientation;
 }
 
 @end
