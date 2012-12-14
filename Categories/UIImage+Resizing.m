@@ -79,8 +79,8 @@
 
 -(UIImage*)scaleByFactor:(float)scaleFactor
 {
-	const size_t originalWidth = (size_t)(self.size.width * scaleFactor);
-	const size_t originalHeight = (size_t)(self.size.height * scaleFactor);
+	const size_t originalWidth = (size_t)(self.size.width * self.scale * scaleFactor);
+	const size_t originalHeight = (size_t)(self.size.height * self.scale * scaleFactor);
 	/// Number of bytes per row, each pixel in the bitmap will be represented by 4 bytes (ARGB), 8 bits of alpha/red/green/blue
 	const size_t bytesPerRow = originalWidth * kNyxNumberOfComponentsPerARBGPixel;
 
@@ -116,7 +116,7 @@
 
 	/// Create an image object from the context
 	CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef];
+	UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(scaledImageRef);
@@ -127,8 +127,8 @@
 
 -(UIImage*)scaleToFitSize:(CGSize)newSize
 {
-	const size_t originalWidth = (size_t)self.size.width;
-	const size_t originalHeight = (size_t)self.size.height;
+	const size_t originalWidth = (size_t)(self.size.width * self.scale);
+	const size_t originalHeight = (size_t)(self.size.height * self.scale);
 
 	/// Keep aspect ratio
 	size_t destWidth, destHeight;
@@ -173,7 +173,7 @@
 
 	/// Create an image object from the context
 	CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef];
+	UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(scaledImageRef);
