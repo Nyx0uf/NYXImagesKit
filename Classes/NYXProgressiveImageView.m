@@ -34,6 +34,7 @@ typedef struct
 +(NSString*)cacheDirectoryAddress;
 -(NSString*)cachedImageSystemName;
 -(void)resetCache;
++(UIImageOrientation)exifOrientationToiOSOrientation:(int)exifOrientation;
 @end
 
 
@@ -294,7 +295,7 @@ typedef struct
 		
 		_dataTemp = nil;
 	}
-    
+
 	if (_imageSource)
 		CFRelease(_imageSource);
 	_connection = nil;
