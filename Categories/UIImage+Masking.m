@@ -16,8 +16,8 @@
 -(UIImage*)maskWithImage:(UIImage*)maskImage
 {
 	/// Create a bitmap context with valid alpha
-	const size_t originalWidth = (size_t)self.size.width;
-	const size_t originalHeight = (size_t)self.size.height;
+	const size_t originalWidth = (size_t)self.size.width * self.scale;
+	const size_t originalHeight = (size_t)self.size.height * self.scale;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(originalWidth, originalHeight, 0);
 	if (!bmContext)
 		return nil;
@@ -41,7 +41,7 @@
 	/// Apply the mask
 	CGImageRef maskedImageRef = CGImageCreateWithMask(imageRefWithAlpha, mask);
 
-	UIImage* result = [UIImage imageWithCGImage:maskedImageRef];
+	UIImage* result = [UIImage imageWithCGImage:maskedImageRef scale:self.scale orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(maskedImageRef);
