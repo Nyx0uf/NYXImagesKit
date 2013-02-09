@@ -7,6 +7,7 @@
 //  www.cocoaintheshell.com
 //
 
+#import <UIKit/UIKit.h>
 
 #import "UIImage+Blurring.h"
 #import "UIImage+Enhancing.h"
