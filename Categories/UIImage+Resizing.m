@@ -35,7 +35,7 @@
 			y = size.height - newSize.height;
 			break;
 		case NYXCropModeBottomCenter:
-			x = newSize.width * 0.5f;
+			x = (size.width - newSize.width) * 0.5f;
 			y = size.height - newSize.height;
 			break;
 		case NYXCropModeBottomRight:
