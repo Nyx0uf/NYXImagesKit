@@ -29,10 +29,18 @@ typedef enum
 
 -(UIImage*)cropToSize:(CGSize)newSize usingMode:(NYXCropMode)cropMode;
 
+// NYXCropModeTopLeft crop mode used
 -(UIImage*)cropToSize:(CGSize)newSize;
 
 -(UIImage*)scaleByFactor:(float)scaleFactor;
 
+// Same as 'scale to fill' in IB.
+-(UIImage*)scaleToFillSize:(CGSize)newSize;
+
+// Preserves aspect ratio. Same as 'aspect fit' in IB.
 -(UIImage*)scaleToFitSize:(CGSize)newSize;
+
+// Preserves aspect ratio. Same as 'aspect fill' in IB.
+-(UIImage*)scaleToCoverSize:(CGSize)newSize;
 
 @end
