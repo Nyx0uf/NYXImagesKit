@@ -36,6 +36,10 @@
 		1E9BA7B414C0B0EF0072A0FB /* NYXProgressiveImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BA7B214C0B0EF0072A0FB /* NYXProgressiveImageView.m */; };
 		1EED6787148A314B00B71186 /* UIImage+Enhancing.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EED6785148A314B00B71186 /* UIImage+Enhancing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1EED6788148A314B00B71186 /* UIImage+Enhancing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EED6786148A314B00B71186 /* UIImage+Enhancing.m */; };
+		1EF44D4F17058586005F335C /* UIView+Screenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EF44D4D17058586005F335C /* UIView+Screenshot.h */; };
+		1EF44D5017058586005F335C /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF44D4E17058586005F335C /* UIView+Screenshot.m */; };
+		1EF44D5317058627005F335C /* UIScrollView+Screenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EF44D5117058627005F335C /* UIScrollView+Screenshot.h */; };
+		1EF44D5417058627005F335C /* UIScrollView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF44D5217058627005F335C /* UIScrollView+Screenshot.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +73,10 @@
 		1E9BA7B214C0B0EF0072A0FB /* NYXProgressiveImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXProgressiveImageView.m; sourceTree = "<group>"; };
 		1EED6785148A314B00B71186 /* UIImage+Enhancing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Enhancing.h"; sourceTree = "<group>"; };
 		1EED6786148A314B00B71186 /* UIImage+Enhancing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Enhancing.m"; sourceTree = "<group>"; };
+		1EF44D4D17058586005F335C /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
+		1EF44D4E17058586005F335C /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
+		1EF44D5117058627005F335C /* UIScrollView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Screenshot.h"; sourceTree = "<group>"; };
+		1EF44D5217058627005F335C /* UIScrollView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Screenshot.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,10 @@
 				1E0289FA144EF39800B6B6D5 /* UIImage+Rotating.m */,
 				1E0289FB144EF39800B6B6D5 /* UIImage+Saving.h */,
 				1E0289FC144EF39800B6B6D5 /* UIImage+Saving.m */,
+				1EF44D4D17058586005F335C /* UIView+Screenshot.h */,
+				1EF44D4E17058586005F335C /* UIView+Screenshot.m */,
+				1EF44D5117058627005F335C /* UIScrollView+Screenshot.h */,
+				1EF44D5217058627005F335C /* UIScrollView+Screenshot.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -192,6 +204,8 @@
 				1E9BA7B314C0B0EF0072A0FB /* NYXProgressiveImageView.h in Headers */,
 				1E028A0F144EF39800B6B6D5 /* NYXImagesHelper.h in Headers */,
 				1E0289ED144EF38B00B6B6D5 /* Prefix.pch in Headers */,
+				1EF44D4F17058586005F335C /* UIView+Screenshot.h in Headers */,
+				1EF44D5317058627005F335C /* UIScrollView+Screenshot.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +270,8 @@
 				1E028A10144EF39800B6B6D5 /* NYXImagesHelper.m in Sources */,
 				1EED6788148A314B00B71186 /* UIImage+Enhancing.m in Sources */,
 				1E9BA7B414C0B0EF0072A0FB /* NYXProgressiveImageView.m in Sources */,
+				1EF44D5017058586005F335C /* UIView+Screenshot.m in Sources */,
+				1EF44D5417058627005F335C /* UIScrollView+Screenshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +285,12 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -282,9 +302,19 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
@@ -298,15 +328,29 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
