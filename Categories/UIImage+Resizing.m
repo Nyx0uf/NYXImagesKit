@@ -85,8 +85,17 @@
 
 -(UIImage*)scaleToFillSize:(CGSize)newSize
 {
-	const size_t destWidth = (size_t)(newSize.width * self.scale);
-	const size_t destHeight = (size_t)(newSize.height * self.scale);
+	size_t destWidth = (size_t)(newSize.width * self.scale);
+	size_t destHeight = (size_t)(newSize.height * self.scale);
+	if (self.imageOrientation == UIImageOrientationLeft
+		|| self.imageOrientation == UIImageOrientationLeftMirrored
+		|| self.imageOrientation == UIImageOrientationRight
+		|| self.imageOrientation == UIImageOrientationRightMirrored)
+	{
+		size_t temp = destWidth;
+		destWidth = destHeight;
+		destHeight = temp;
+	}
 
   /// Create an ARGB bitmap context
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(destWidth, destHeight, destWidth * kNyxNumberOfComponentsPerARBGPixel);
@@ -144,17 +153,19 @@
 
 -(UIImage*)scaleToCoverSize:(CGSize)newSize
 {
-	/// Keep aspect ratio
 	size_t destWidth, destHeight;
-	if (self.size.width > self.size.height)
-	{
-		destWidth = (size_t)newSize.width;
-		destHeight = (size_t)(self.size.height * newSize.width / self.size.width);
-	}
-	else
+	CGFloat widthRatio = newSize.width / self.size.width;
+	CGFloat heightRatio = newSize.height / self.size.height;
+	/// Keep aspect ratio
+	if (heightRatio > widthRatio)
 	{
 		destHeight = (size_t)newSize.height;
 		destWidth = (size_t)(self.size.width * newSize.height / self.size.height);
+	}
+	else
+	{
+		destWidth = (size_t)newSize.width;
+		destHeight = (size_t)(self.size.height * newSize.width / self.size.width);
 	}
 	return [self scaleToFillSize:CGSizeMake(destWidth, destHeight)];
 }
