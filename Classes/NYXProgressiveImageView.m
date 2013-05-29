@@ -11,7 +11,7 @@
 
 #import "NYXProgressiveImageView.h"
 #import "NYXImagesHelper.h"
-#import "UIImage+Saving.h"
+//#import "UIImage+Saving.h"
 #import <ImageIO/ImageIO.h>
 #import <CommonCrypto/CommonDigest.h>
 
@@ -187,18 +187,16 @@ typedef struct
 }
 
 #pragma mark - NSURLConnectionDelegate
--(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
+-(void)connection:(__unused NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 {
-#pragma unused(connection)
 	_imageSource = CGImageSourceCreateIncremental(NULL);
 	_imageWidth = _imageHeight = -1;
 	_expectedSize = [response expectedContentLength];
 	_dataTemp = [[NSMutableData alloc] init];
 }
 
--(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
+-(void)connection:(__unused NSURLConnection*)connection didReceiveData:(NSData*)data
 {
-#pragma unused(connection)
 	[_dataTemp appendData:data];
     
 	const NSUInteger len = [_dataTemp length];
@@ -214,6 +212,7 @@ typedef struct
 			/// iOS 4.x fix to correctly handle JPEG images ( http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/ )
 			/// If the image doesn't have a transparency layer, the background is black-filled
 			/// So we still need to render the image, it's teh sux.
+			/// Note: Progressive JPEG are not supported see #32
 			CGImageRef imgTmp = [self createTransitoryImage:cgImage];
 			if (imgTmp)
 			{
@@ -261,9 +260,8 @@ typedef struct
 	}
 }
 
--(void)connectionDidFinishLoading:(NSURLConnection*)connection
+-(void)connectionDidFinishLoading:(__unused NSURLConnection*)connection
 {
-#pragma unused(connection)
 	if (_dataTemp)
 	{
 		UIImage* img = [[UIImage alloc] initWithData:_dataTemp];
@@ -290,7 +288,8 @@ typedef struct
 				[fileManager createDirectoryAtPath:cacheDir withIntermediateDirectories:NO attributes:nil error:nil];
             
 			NSString* path = [cacheDir stringByAppendingPathComponent:[self cachedImageSystemName]];
-			[img saveToPath:path uti:CGImageSourceGetType(_imageSource) backgroundFillColor:nil];
+			//[img saveToPath:path uti:CGImageSourceGetType(_imageSource) backgroundFillColor:nil];
+			[_dataTemp writeToFile:path options:NSDataWritingAtomic error:nil];
 		}
 		
 		_dataTemp = nil;
@@ -304,10 +303,8 @@ typedef struct
 	CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
--(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
+-(void)connection:(__unused NSURLConnection*)connection didFailWithError:(__unused NSError*)error
 {
-#pragma unused(connection)
-#pragma unused(error)
 	if (_delegateFlags.delegateImageDownloadFailedWithData)
 	{
 		dispatch_sync(dispatch_get_main_queue(), ^{
