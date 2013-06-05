@@ -16,12 +16,13 @@ static CIContext* __ciContext = nil;
 static CGColorSpaceRef __rgbColorSpace = NULL;
 
 
-CGContextRef NYXCreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow)
+CGContextRef NYXCreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow, BOOL withAlpha)
 {
 	/// Use the generic RGB color space
 	/// We avoid the NULL check because CGColorSpaceRelease() NULL check the value anyway, and worst case scenario = fail to create context
 	/// Create the bitmap context, we want pre-multiplied ARGB, 8-bits per component
-	CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, bytesPerRow, NYXGetRGBColorSpace(), kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+	CGImageAlphaInfo alphaInfo = (withAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst);
+	CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, bytesPerRow, NYXGetRGBColorSpace(), kCGBitmapByteOrderDefault | alphaInfo);
 
 	return bmContext;
 }
@@ -87,4 +88,12 @@ void NYXImagesKitRelease(void)
 		CGColorSpaceRelease(__rgbColorSpace), __rgbColorSpace = NULL;
 	if (__ciContext)
 		__ciContext = nil;
+}
+
+BOOL NYXImageHasAlpha(CGImageRef imageRef)
+{
+	CGImageAlphaInfo alpha = CGImageGetAlphaInfo(imageRef);
+	BOOL hasAlpha = (alpha == kCGImageAlphaFirst || alpha == kCGImageAlphaLast || alpha == kCGImageAlphaPremultipliedFirst || alpha == kCGImageAlphaPremultipliedLast);
+
+	return hasAlpha;
 }

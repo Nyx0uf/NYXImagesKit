@@ -29,7 +29,7 @@ static int16_t __s_gaussianblur_kernel_5x5[25] = {
 	const size_t width = (size_t)self.size.width;
 	const size_t height = (size_t)self.size.height;
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
-	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow);
+	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
 		return nil;
 
