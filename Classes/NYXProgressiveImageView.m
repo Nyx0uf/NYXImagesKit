@@ -333,7 +333,7 @@ typedef struct
 -(CGImageRef)createTransitoryImage:(CGImageRef)partialImage
 {
 	const size_t partialHeight = CGImageGetHeight(partialImage);
-	CGContextRef bmContext = NYXCreateARGBBitmapContext((size_t)_imageWidth, (size_t)_imageHeight, (size_t)_imageWidth * 4);
+	CGContextRef bmContext = NYXCreateARGBBitmapContext((size_t)_imageWidth, (size_t)_imageHeight, (size_t)_imageWidth * 4, NYXImageHasAlpha(partialImage));
 	if (!bmContext)
 		return NULL;
 	CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = _imageWidth, .size.height = partialHeight}, partialImage);
