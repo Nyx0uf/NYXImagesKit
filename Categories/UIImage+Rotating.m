@@ -22,7 +22,7 @@
 
 	CGRect rotatedRect = CGRectApplyAffineTransform(CGRectMake(0., 0., width, height), CGAffineTransformMakeRotation(radians));
 
-	CGContextRef bmContext = NYXCreateARGBBitmapContext((size_t)rotatedRect.size.width, (size_t)rotatedRect.size.height, (size_t)rotatedRect.size.width * kNyxNumberOfComponentsPerARBGPixel);
+	CGContextRef bmContext = NYXCreateARGBBitmapContext((size_t)rotatedRect.size.width, (size_t)rotatedRect.size.height, (size_t)rotatedRect.size.width * kNyxNumberOfComponentsPerARBGPixel, YES);
 	if (!bmContext)
 		return nil;
 
@@ -79,7 +79,7 @@
 	const size_t width = (size_t)(self.size.width * self.scale);
 	const size_t height = (size_t)(self.size.height * self.scale);
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
-	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow);
+	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow, YES);
 	if (!bmContext)
 		return nil;
 
