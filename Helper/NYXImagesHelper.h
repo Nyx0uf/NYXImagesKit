@@ -40,8 +40,9 @@
 	#define NYX_DISPATCH_RELEASE(__QUEUE) (dispatch_release(__QUEUE))
 #endif
 
-CGContextRef NYXCreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow);
+CGContextRef NYXCreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow, BOOL withAlpha);
 CGImageRef NYXCreateGradientImage(const size_t pixelsWide, const size_t pixelsHigh, const CGFloat fromAlpha, const CGFloat toAlpha);
 CIContext* NYXGetCIContext(void);
 CGColorSpaceRef NYXGetRGBColorSpace(void);
 void NYXImagesKitRelease(void);
+BOOL NYXImageHasAlpha(CGImageRef imageRef);
