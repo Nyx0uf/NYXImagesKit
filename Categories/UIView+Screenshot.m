@@ -9,7 +9,7 @@
 
 
 #import "UIView+Screenshot.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIView (NYX_Screenshot)
 
