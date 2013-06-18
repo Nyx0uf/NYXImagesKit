@@ -35,7 +35,7 @@ CGImageRef NYXCreateGradientImage(const size_t pixelsWide, const size_t pixelsHi
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
 
 	// create the bitmap context
-	CGContextRef gradientBitmapContext = CGBitmapContextCreate(NULL, pixelsWide, pixelsHigh, 8, 0, colorSpace, kCGImageAlphaNone);
+	CGContextRef gradientBitmapContext = CGBitmapContextCreate(NULL, pixelsWide, pixelsHigh, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
 
 	// define the start and end grayscale values (with the alpha, even though
 	// our bitmap context doesn't support alpha the gradient requires it)
