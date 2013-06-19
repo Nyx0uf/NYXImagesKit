@@ -401,7 +401,7 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
     CGRect imageRect = CGRectMake(0, 0, self.size.width, self.size.height);
     
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-	CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, width * kNyxNumberOfComponentsPerGreyPixel, colorSpace, kCGImageAlphaNone);
+	CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, width * kNyxNumberOfComponentsPerGreyPixel, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
 	CGColorSpaceRelease(colorSpace);
 	if (!bmContext)
 		return nil;
