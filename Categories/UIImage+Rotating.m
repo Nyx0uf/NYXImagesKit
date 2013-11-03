@@ -36,7 +36,6 @@
 	CGContextRotateCTM(bmContext, radians);
 
   // Do flips
-	CGContextTranslateCTM(bmContext, (doHorizontalFlip ? width : 0.0f), (doVerticalFlip ? height : 0.0f));
 	CGContextScaleCTM(bmContext, (doHorizontalFlip ? -1.0f : 1.0f), (doVerticalFlip ? -1.0f : 1.0f));
 
 	/// Draw the image in the bitmap context
