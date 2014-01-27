@@ -302,7 +302,7 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 	void* outt = malloc(n);
 	vImage_Buffer src = {data, height, width, bytesPerRow};
 	vImage_Buffer dest = {outt, height, width, bytesPerRow};
-	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_emboss_kernel_3x3, 3, 3, 1/*divisor*/, bias, NULL, kvImageCopyInPlace);
+	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_emboss_kernel_3x3, 3, 3, 1/*divisor*/, (int32_t)bias, NULL, kvImageCopyInPlace);
 	
 	memcpy(data, outt, n);
 	
@@ -624,7 +624,7 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 	void* outt = malloc(n);
 	vImage_Buffer src = {data, height, width, bytesPerRow};
 	vImage_Buffer dest = {outt, height, width, bytesPerRow};
-	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_sharpen_kernel_3x3, 3, 3, 1/*divisor*/, bias, NULL, kvImageCopyInPlace);
+	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_sharpen_kernel_3x3, 3, 3, 1/*divisor*/, (int32_t)bias, NULL, kvImageCopyInPlace);
 	
 	memcpy(data, outt, n);
 	
@@ -665,7 +665,7 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 	void* outt = malloc(n);
 	vImage_Buffer src = {data, height, width, bytesPerRow};
 	vImage_Buffer dest = {outt, height, width, bytesPerRow};
-	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_unsharpen_kernel_3x3, 3, 3, 9/*divisor*/, bias, NULL, kvImageCopyInPlace);
+	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_unsharpen_kernel_3x3, 3, 3, 9/*divisor*/, (int32_t)bias, NULL, kvImageCopyInPlace);
 	
 	memcpy(data, outt, n);
 	
