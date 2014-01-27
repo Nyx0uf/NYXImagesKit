@@ -48,7 +48,7 @@ static int16_t __s_gaussianblur_kernel_5x5[25] = {
 	void* outt = malloc(n);
 	vImage_Buffer src = {data, height, width, bytesPerRow};
 	vImage_Buffer dest = {outt, height, width, bytesPerRow};
-	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_gaussianblur_kernel_5x5, 5, 5, 256/*divisor*/, bias, NULL, kvImageCopyInPlace);
+	vImageConvolveWithBias_ARGB8888(&src, &dest, NULL, 0, 0, __s_gaussianblur_kernel_5x5, 5, 5, 256/*divisor*/, (int32_t)bias, NULL, kvImageCopyInPlace);
 	memcpy(data, outt, n);
 	free(outt);
 
