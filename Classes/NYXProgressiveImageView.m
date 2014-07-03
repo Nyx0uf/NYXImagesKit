@@ -328,6 +328,8 @@ typedef struct
 	_caching = NO;
 	_queue = dispatch_queue_create("com.cits.pdlqueue", DISPATCH_QUEUE_SERIAL);
 	_imageOrientation = UIImageOrientationUp;
+	_imageSource = NULL;
+	_dataTemp = nil;
 }
 
 -(CGImageRef)createTransitoryImage:(CGImageRef)partialImage
