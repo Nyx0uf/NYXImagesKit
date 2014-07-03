@@ -312,9 +312,9 @@ typedef struct
 		});
 	}
 
-	_dataTemp = nil;
-	if (_imageSource)
+    if (_imageSource && _dataTemp)
 		CFRelease(_imageSource);
+	_dataTemp = nil;
 	_connection = nil;
 	_url = nil;
 	_downloading = NO;
