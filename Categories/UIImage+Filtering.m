@@ -395,10 +395,10 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 {
 	/* const UInt8 luminance = (red * 0.2126) + (green * 0.7152) + (blue * 0.0722); // Good luminance value */
 	/// Create a gray bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)self.size.width * self.scale;
+	const size_t height = (size_t)self.size.height * self.scale;
     
-    CGRect imageRect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGRect imageRect = CGRectMake(0, 0, width, height);
     
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
 	CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, width * kNyxNumberOfComponentsPerGreyPixel, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
