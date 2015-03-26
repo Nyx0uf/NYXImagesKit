@@ -296,7 +296,10 @@ typedef struct
 	}
 
 	if (_imageSource)
+	{
 		CFRelease(_imageSource);
+		_imageSource = NULL;
+	}
 	_connection = nil;
 	_url = nil;
 	_downloading = NO;
@@ -314,7 +317,10 @@ typedef struct
 
 	_dataTemp = nil;
 	if (_imageSource)
+	{
 		CFRelease(_imageSource);
+		_imageSource = NULL;
+	}
 	_connection = nil;
 	_url = nil;
 	_downloading = NO;
