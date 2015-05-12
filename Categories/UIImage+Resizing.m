@@ -64,6 +64,10 @@
 		CGFloat temp = x;
 		x = y;
 		y = temp;
+        
+        temp = newSize.width;
+        newSize.width = newSize.height;
+        newSize.height = temp;
 	}
 
 	CGRect cropRect = CGRectMake(x * self.scale, y * self.scale, newSize.width * self.scale, newSize.height * self.scale);
