@@ -10,6 +10,7 @@
 
 #import "UIScrollView+Screenshot.h"
 #import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 
 @implementation UIScrollView (NYX_Screenshot)
 

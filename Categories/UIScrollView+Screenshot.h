@@ -6,7 +6,7 @@
 //  Copyright 2013 Nyx0uf. All rights reserved.
 //  www.cocoaintheshell.com
 //
-
+#import <UIKit/UIKit.h>
 
 @interface UIScrollView (NYX_Screenshot)
 

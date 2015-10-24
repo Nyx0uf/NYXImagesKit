@@ -9,7 +9,8 @@
 
 
 #import "NYXImagesHelper.h"
-
+#import <CoreImage/CoreImage.h>
+#import <UIKit/UIKit.h>
 
 typedef enum
 {
