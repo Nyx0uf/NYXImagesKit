@@ -72,8 +72,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 -(UIImage*)brightenWithValue:(float)value
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
 		return nil;
@@ -126,8 +126,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 -(UIImage*)contrastAdjustmentWithValue:(float)value
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
 		return nil;
@@ -192,8 +192,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 {
 #pragma unused(bias)
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
@@ -280,8 +280,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 -(UIImage*)embossWithBias:(NSInteger)bias
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
@@ -321,8 +321,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 /// (0.01, 8)
 -(UIImage*)gammaCorrectionWithValue:(float)value
 {
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	/// Number of bytes per row, each pixel in the bitmap will be represented by 4 bytes (ARGB), 8 bits of alpha/red/green/blue
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 
@@ -434,8 +434,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 -(UIImage*)invert
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
 		return nil;
@@ -494,8 +494,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 -(UIImage*)opacity:(float)value
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel, YES);
 	if (!bmContext) 
 		return nil;
@@ -531,8 +531,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 	{
 		/* 1.6x faster than before */
 		/// Create an ARGB bitmap context
-		const size_t width = (size_t)self.size.width;
-		const size_t height = (size_t)self.size.height;
+		const size_t width = (size_t)(self.size.width * self.scale);
+		const size_t height = (size_t)(self.size.height * self.scale);
 		CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, width * kNyxNumberOfComponentsPerARBGPixel, NYXImageHasAlpha(self.CGImage));
 		if (!bmContext) 
 			return nil;
@@ -609,8 +609,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 -(UIImage*)sharpenWithBias:(NSInteger)bias
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
@@ -650,8 +650,8 @@ static int16_t __s_unsharpen_kernel_3x3[9] = {
 -(UIImage*)unsharpenWithBias:(NSInteger)bias
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+	const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
