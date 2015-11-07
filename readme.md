@@ -1,3 +1,5 @@
+# Don't have time nor motivation to keep updating this project #
+
 # NYXImagesKit #
 
 This is a project for iOS which regroups a collection of useful *UIImage* categories to handle operations such as filtering, blurring, enhancing, masking, reflecting, resizing, rotating, saving. There is also a subclass of *UIImageView* to load an image asynchronously from a URL and display it as it is downloaded.
