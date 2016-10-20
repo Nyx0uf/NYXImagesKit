@@ -1,4 +1,4 @@
-# Don't have time nor motivation to keep updating this project #
+# This project is not maintained anymore, a shiny new Swift version is available at <https://github.com/Nyx0uf/SwiftyImages> #
 
 # NYXImagesKit #
 
@@ -55,7 +55,7 @@ This category is composed of a single method to blur an *UIImage*. Blurring is d
 
 ### UIImage+Masking ###
 
-This category is composed of a single method which allow to mask an image with another image, you just have to create the mask image you desire.
+This category is composed of a single method which allows to mask an image with another image, you just have to create the mask image you desire.
 
 	UIImage* masked = [myImage maskWithImage:[UIImage imageNamed:@"mask.png"]];
 
@@ -142,15 +142,9 @@ If your image contains transparent zone and you save it in a format that doesn't
 ### NYXProgressiveImageView ###
 
 This is a subclass of *UIImageView* to load asynchronously an image from an URL and display it as it is being downloaded. Image caching is supported.
-For more informations see <http://www.cocoaintheshell.com/2012/01/nyximageskit-class-nyxprogressiveimageview/> and <http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/>.
+For more informations see <https://cocoaintheshell.whine.fr/2012/01/nyximageskit-class-nyxprogressiveimageview/> and <https://cocoaintheshell.whine.fr/2011/05/progressive-images-download-imageio/>.
 
 
 ### License ###
 
 ***NYXImagesKit*** is released under the *Simplified BSD license*, see **LICENSE.txt**.
-
-I hope you will find this useful, and, feel free to contribute !
-
-Blog : <http://www.cocoaintheshell.com/>
-
-Twitter : @Nyx0uf
