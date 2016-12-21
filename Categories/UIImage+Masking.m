@@ -7,7 +7,9 @@
 //  www.cocoaintheshell.com
 //
 
-
+#import <CoreImage/CoreImage.h>
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 #import "UIImage+Masking.h"
 
 

@@ -8,7 +8,8 @@
 //  www.cocoaintheshell.com
 //
 
-
+#import <QuartzCore/QuartzCore.h>
+#import <CoreImage/CoreImage.h>
 /* Number of components for an opaque grey colorSpace = 3 */
 #define kNyxNumberOfComponentsPerGreyPixel 3
 /* Number of components for an ARGB pixel (Alpha / Red / Green / Blue) = 4 */

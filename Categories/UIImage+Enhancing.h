@@ -6,7 +6,7 @@
 //  Copyright 2012 Nyx0uf. All rights reserved.
 //  www.cocoaintheshell.com
 //
-
+#import <UIKit/UIKit.h>
 
 @interface UIImage (NYX_Enhancing)
 

@@ -1,0 +1,6 @@
+framework module ImagesKit {
+  umbrella header "ImagesKit.h"
+
+  export *
+  module * { export * }
+}

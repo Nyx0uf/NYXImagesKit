@@ -28,7 +28,7 @@
 
 
 #import "NYXImagesHelper.h"
-
+#import <UIKit/UIKit.h>
 
 @interface UIImage (NYX_Reflection)
 
