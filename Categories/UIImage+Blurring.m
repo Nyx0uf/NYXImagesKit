@@ -26,8 +26,8 @@ static int16_t __s_gaussianblur_kernel_5x5[25] = {
 -(UIImage*)gaussianBlurWithBias:(NSInteger)bias
 {
 	/// Create an ARGB bitmap context
-	const size_t width = (size_t)self.size.width;
-	const size_t height = (size_t)self.size.height;
+    const size_t width = (size_t)(self.size.width * self.scale);
+	const size_t height = (size_t)(self.size.height * self.scale);
 	const size_t bytesPerRow = width * kNyxNumberOfComponentsPerARBGPixel;
 	CGContextRef bmContext = NYXCreateARGBBitmapContext(width, height, bytesPerRow, NYXImageHasAlpha(self.CGImage));
 	if (!bmContext) 
