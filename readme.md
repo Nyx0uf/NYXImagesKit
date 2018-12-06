@@ -1,4 +1,4 @@
-# This project is not maintained anymore, a shiny new Swift version is available at <https://github.com/Nyx0uf/SwiftyImages> #
+# This project is not maintained anymore #
 
 # NYXImagesKit #
 
